@@ -2,6 +2,7 @@ package com.example.user.project_java_5778.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.user.project_java_5778.R;
 
@@ -12,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        Toast.makeText(getBaseContext(),"abcd",Toast.LENGTH_LONG).show();
 
     }
 }
