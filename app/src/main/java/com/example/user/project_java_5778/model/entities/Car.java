@@ -6,6 +6,7 @@ package com.example.user.project_java_5778.model.entities;
 
 public class Car {
 
+    //car
     private int branchNumber;
     public void setBranchNumber (int branchNUmber){this.branchNumber = branchNumber;}
     public int getBranchNumber  (){return this.branchNumber;}
