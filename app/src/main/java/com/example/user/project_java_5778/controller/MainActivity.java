@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Toast.makeText(getBaseContext(),"ddd",Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(),"aaa",Toast.LENGTH_LONG).show();
 
     }
 }
