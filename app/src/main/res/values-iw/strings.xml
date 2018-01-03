@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">פרוייקט</string>
+    <string name="clients">לקוח</string>
+    <string name="branches">סניף</string>
+    <string name="carModels">דגם מכונית</string>
+    <string name="cars">מכוניות</string>
+</resources>
