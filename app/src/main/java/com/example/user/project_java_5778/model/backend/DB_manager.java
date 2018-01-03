@@ -19,9 +19,9 @@ public interface DB_manager {
     void updateClient(String id, ContentValues values);
     List<Client> getClients();
 
-    String addBranch (ContentValues Branch);
-    boolean removeBranch (String id);
-    void updateBranch(String id, ContentValues values);
+    int addBranch (ContentValues Branch);
+    boolean removeBranch (int id);
+    void updateBranch(int id, ContentValues values);
     List<Branch> getBranches();
 
     String addCarModel (ContentValues CarModel);
