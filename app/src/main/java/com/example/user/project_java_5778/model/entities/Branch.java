@@ -7,7 +7,7 @@ package com.example.user.project_java_5778.model.entities;
 public class Branch {
 
 
-    private String cityName;
+    private String cityName
     public void setCityName (String cityName){
             this.cityName = cityName;
         }
