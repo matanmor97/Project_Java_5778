@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="com.example.user.project_java_5778.controller.MainActivity">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="368dp"
+        android:id="@+id/clients"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
-</android.support.constraint.ConstraintLayout>
+        android:text="Clients" />
+
+    <Button
+        android:id="@+id/branches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Branches" />
+
+    <Button
+        android:id="@+id/carModels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Car Models" />
+
+    <Button
+        android:id="@+id/cars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cars" />
+
+
+</LinearLayout>
