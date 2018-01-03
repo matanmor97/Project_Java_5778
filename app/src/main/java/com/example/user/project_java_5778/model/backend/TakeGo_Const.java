@@ -23,7 +23,9 @@ public class TakeGo_Const {
     }
 
     public static class BranchConst {
-        public static final String Address = "Address";
+        public static final String cityName = "cityName";
+        public static final String streetName = "streetName";
+        public static final String number = "number";
         public static final String numOfParkingSpace = "numOfParkingSpace";
         public static final String branchNumber = "branchNumber";
 
@@ -80,6 +82,7 @@ public class TakeGo_Const {
 
         return contentValues;
     }
+
     public static Client ContentValueToClient(ContentValues contentValues) {
 
         Client client = new Client();
@@ -96,16 +99,26 @@ public class TakeGo_Const {
     public static ContentValues BranchToContentValues(Branch branch) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(BranchConst.Address, branch.Address.);
-        contentValues.put(ClientConst.lastName, client.getLastName());
-        contentValues.put(ClientConst.id, client.getId());
-        contentValues.put(ClientConst.phoneNumber, client.getPhoneNumber());
-        contentValues.put(ClientConst.emailAdress, client.getEmailAdress());
-        contentValues.put(ClientConst.creditCard, client.getCreditCard());
+        contentValues.put(BranchConst.cityName, branch.getCityName()); // צריך למצוא איך לגשת אל הערכים של האינר קלאס
+        contentValues.put(BranchConst.streetName, branch.getStreetName());
+        contentValues.put(BranchConst.number, branch.getNumber());
+        contentValues.put(BranchConst.numOfParkingSpace, branch.getNumOfParkingSpace());
+        contentValues.put(BranchConst.branchNumber, branch.getBranchNumber());
 
         return contentValues;
     }
 
+    public static Branch ContentValueToBranch(ContentValues contentValues) {
+
+        Branch branch = new Branch();
+        branch.setCityName(contentValues.getAsString(BranchConst.cityName));
+        branch.setStreetName(contentValues.getAsString(BranchConst.streetName));
+        branch.setNumber(contentValues.getAsInteger(BranchConst.number));
+        branch.setNumOfParkingSpac(contentValues.getAsInteger(BranchConst.numOfParkingSpace));
+        branch.setBranchNumber(contentValues.getAsInteger(BranchConst.number));
+
+        return branch;
+    }
 
     public static ContentValues CarModelToContentValues(CarModel carModel) {
 
@@ -119,6 +132,7 @@ public class TakeGo_Const {
 
         return contentValues;
     }
+
     public static CarModel ContentValueToCarModel(ContentValues contentValues) {
 
         CarModel carModel = new CarModel();
@@ -142,6 +156,7 @@ public class TakeGo_Const {
 
         return contentValues;
     }
+
     public static Car ContentValueToCar(ContentValues contentValues) {
 
         Car car = new Car();
@@ -152,7 +167,6 @@ public class TakeGo_Const {
 
         return car;
     }
-
 
 
 }

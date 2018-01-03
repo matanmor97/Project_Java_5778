@@ -16,22 +16,22 @@ public interface DB_manager {
 
     String addClient (ContentValues client);
     boolean removeClient (String id);
-    boolean updateClient(String id, ContentValues values);
+    void updateClient(String id, ContentValues values);
     List<Client> getClients();
 
     String addBranch (ContentValues Branch);
     boolean removeBranch (String id);
-    boolean updateBranch(String id, ContentValues values);
+    void updateBranch(String id, ContentValues values);
     List<Branch> getBranches();
 
     String addCarModel (ContentValues CarModel);
     boolean removeCarModel (String id);
-    boolean updateCarModel(String id, ContentValues values);
+    void updateCarModel(String id, ContentValues values);
     List<CarModel> getCarModels();
 
     int addCar (ContentValues Car);
     boolean removeCar (String id);
-    boolean updateCar(String id, ContentValues values);
+    void updateCar(String id, ContentValues values);
     List<Car> getCars();
 
 
@@ -47,7 +47,7 @@ public interface DB_manager {
 
      String addInvitation (ContentValues Invitation);
      boolean removeInvitation (String id);
-     boolean updateInvitation(String id, ContentValues values);
+     void updateInvitation(String id, ContentValues values);
      List<Invitation> GetInvitation();
 
      **/

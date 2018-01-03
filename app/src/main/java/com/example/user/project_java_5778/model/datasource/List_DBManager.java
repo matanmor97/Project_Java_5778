@@ -19,17 +19,51 @@ public class List_DBManager implements DB_manager {
     static List<Car> cars;
     static List<Invitation> invitations;
 
+
     @Override
     public boolean CheckClientExist(String id) {
 
-        for (Client client:clients){
-            if (client.getId() == id)
-                return true;
-        }
+        Client client = GetClient(id);
+
+        if (client != null)
+            return true;
 
         return false;
     }
 
+
+
+    public Client GetClient(String id){
+        Client client = null;
+
+        for (Client c:clients) {
+            if (c.getId() == id)
+                client = c;
+        }
+
+        return client;
+    }
+    @Override
+    public boolean removeClient(String id) {
+
+        Client client = GetClient(id);
+        return clients.remove(client);
+    }
+    @Override
+    public void updateClient(String id, ContentValues values) {
+
+        Client client = TakeGo_Const.ContentValueToClient(values);
+        GetClient(id);
+
+        clients.set(clients.indexOf(client), client);
+
+
+    }
+    @Override
+    public List<Client> getClients() {
+
+        return clients;
+    }
     @Override
     public String addClient(ContentValues contentValues) {
 
@@ -38,24 +72,22 @@ public class List_DBManager implements DB_manager {
 
         return client.getId();
     }
-    @Override
-    public boolean removeClient(String id) {
-        Client client = getClients()
+
+
+
+    public Branch GetBranch (int branchNumber){
+
+        Branch branch = null;
+
+        for (Branch b:branches) {
+            if (b.getBranchNumber() == branchNumber)
+                branch = b;
+        }
+
+        return branch;
     }
-
     @Override
-    public boolean updateClient(String id, ContentValues values) {
-        return false;
-    }
 
-    @Override
-    public List<Client> getClients() {
-
-        return clients;
-    }
-
-
-    @Override
     public String addBranch(ContentValues Branch) {
         return null;
     }
@@ -66,7 +98,7 @@ public class List_DBManager implements DB_manager {
     }
 
     @Override
-    public boolean updateBranch(String id, ContentValues values) {
+    public void updateBranch(String id, ContentValues values) {
         return false;
     }
 
@@ -91,7 +123,7 @@ public class List_DBManager implements DB_manager {
     }
 
     @Override
-    public boolean updateCarModel(String id, ContentValues values) {
+    public void updateCarModel(String id, ContentValues values) {
         return false;
     }
 
@@ -116,7 +148,7 @@ public class List_DBManager implements DB_manager {
     }
 
     @Override
-    public boolean updateCar(String id, ContentValues values) {
+    public void updateCar(String id, ContentValues values) {
         return false;
     }
 
