@@ -117,18 +117,35 @@ public class List_DBManager implements DB_manager {
         return carmodel.getModelCode();
     }
 
-    @Override
-    public boolean removeCarModel(String id) {
-        return false;
+    public CarModel GetCarModel(String modelName){
+        CarModel carModel = null;
+
+        for (CarModel c:carModels) {
+            if (c.getModelName() == modelName)
+                carModel = c;
+        }
+
+        return carModel;
     }
 
     @Override
-    public void updateCarModel(String id, ContentValues values) {
-        return false;
+    public boolean removeCarModel(String modelName) {
+        CarModel carModel = GetCarModel(modelName);
+        return carModels.remove(modelName);
+    }
+
+    @Override
+    public void updateCarModel(String modelName, ContentValues values) {
+        CarModel carModel = TakeGo_Const.ContentValueToCarModel(values);
+        GetCarModel(modelName);
+
+        carModels.set(carModels.indexOf(carModel),carModel);
+
     }
 
     @Override
     public List<CarModel> getCarModels() {
+
         return carModels;
     }
 
