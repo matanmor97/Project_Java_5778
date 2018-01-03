@@ -1,5 +1,6 @@
 package com.example.user.project_java_5778.model.datasource;
 
+
 import android.content.ContentValues;
 
 import com.example.user.project_java_5778.model.backend.DB_manager;
@@ -44,6 +45,14 @@ public class List_DBManager implements DB_manager {
         return client;
     }
     @Override
+    public String addClient(ContentValues contentValues) {
+
+        Client client = TakeGo_Const.ContentValueToClient(contentValues);
+        clients.add(client);
+
+        return client.getId();
+    }
+    @Override
     public boolean removeClient(String id) {
 
         Client client = GetClient(id);
@@ -53,25 +62,14 @@ public class List_DBManager implements DB_manager {
     public void updateClient(String id, ContentValues values) {
 
         Client client = TakeGo_Const.ContentValueToClient(values);
-        GetClient(id);
-
-        clients.set(clients.indexOf(client), client);
-
-
+        clients.set(clients.indexOf(GetClient(id)), client);
     }
     @Override
     public List<Client> getClients() {
 
         return clients;
     }
-    @Override
-    public String addClient(ContentValues contentValues) {
 
-        Client client = TakeGo_Const.ContentValueToClient(contentValues);
-        clients.add(client);
-
-        return client.getId();
-    }
 
 
 
@@ -87,27 +85,41 @@ public class List_DBManager implements DB_manager {
         return branch;
     }
     @Override
+    public int addBranch(ContentValues contentValues) {
 
-    public String addBranch(ContentValues Branch) {
-        return null;
+        Branch branch = TakeGo_Const.ContentValueToBranch(contentValues);
+        branches.add(branch);
+
+        return branch.getBranchNumber();
     }
-
     @Override
-    public boolean removeBranch(String id) {
-        return false;
-    }
+    public boolean removeBranch(int branchNumber) {
 
+        Branch branch = GetBranch(branchNumber);
+        return branches.remove(branch);
+    }
     @Override
-    public void updateBranch(String id, ContentValues values) {
-        return false;
-    }
+    public void updateBranch(int branchNumber, ContentValues values) {
 
+        Branch branch = TakeGo_Const.ContentValueToBranch(values);
+        branches.set(branches.indexOf(GetBranch(branchNumber)), branch);
+    }
     @Override
     public List<Branch> getBranches() {
         return branches;
     }
 
 
+    public CarModel GetCarModel(String modelName){
+        CarModel carModel = null;
+
+        for (CarModel c:carModels) {
+            if (c.getModelName() == modelName)
+                carModel = c;
+        }
+
+        return carModel;
+    }
     @Override
     public String addCarModel(ContentValues contentValues) {
 
@@ -116,23 +128,37 @@ public class List_DBManager implements DB_manager {
 
         return carmodel.getModelCode();
     }
-
     @Override
-    public boolean removeCarModel(String id) {
-        return false;
+    public boolean removeCarModel(String modelName) {
+        CarModel carModel = GetCarModel(modelName);
+        return carModels.remove(modelName);
     }
-
     @Override
-    public void updateCarModel(String id, ContentValues values) {
-        return false;
-    }
+    public void updateCarModel(String modelName, ContentValues values) {
 
+        CarModel carModel = TakeGo_Const.ContentValueToCarModel(values);
+        carModels.set(carModels.indexOf(GetCarModel(modelName)),carModel);
+
+    }
     @Override
     public List<CarModel> getCarModels() {
+
         return carModels;
     }
 
 
+
+    public Car GetCar(int carNumber){
+
+        Car car = null;
+
+        for (Car c:cars) {
+            if (c.getCarNumber() == carNumber)
+                car = c;
+        }
+
+        return car;
+    }
     @Override
     public int addCar(ContentValues contentValues) {
 
@@ -141,17 +167,18 @@ public class List_DBManager implements DB_manager {
 
         return car.getCarNumber();
     }
-
     @Override
-    public boolean removeCar(String id) {
-        return false;
-    }
+    public boolean removeCar(int carNumber) {
 
+        Car car = GetCar(carNumber);
+        return cars.remove(car);
+    }
     @Override
-    public void updateCar(String id, ContentValues values) {
-        return false;
-    }
+    public void updateCar(int carNumber, ContentValues values) {
 
+        Car car = TakeGo_Const.ContentValueToCar(values);
+        cars.set(cars.indexOf(GetCar(carNumber)),car);
+    }
     @Override
     public List<Car> getCars() {
         return cars;

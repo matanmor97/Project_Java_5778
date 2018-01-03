@@ -14,24 +14,24 @@ public interface DB_manager {
 
     boolean CheckClientExist (String id);
 
-    String addClient (ContentValues client);
+    String addClient (ContentValues contentValues);
     boolean removeClient (String id);
     void updateClient(String id, ContentValues values);
     List<Client> getClients();
 
-    int addBranch (ContentValues Branch);
+    int addBranch (ContentValues contentValues);
     boolean removeBranch (int id);
     void updateBranch(int id, ContentValues values);
     List<Branch> getBranches();
 
-    String addCarModel (ContentValues CarModel);
+    String addCarModel (ContentValues contentValues);
     boolean removeCarModel (String id);
     void updateCarModel(String id, ContentValues values);
     List<CarModel> getCarModels();
 
-    int addCar (ContentValues Car);
-    boolean removeCar (String id);
-    void updateCar(String id, ContentValues values);
+    int addCar (ContentValues contentValues);
+    boolean removeCar (int id);
+    void updateCar(int id, ContentValues values);
     List<Car> getCars();
 
 
