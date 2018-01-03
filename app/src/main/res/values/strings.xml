@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Project_Java_5778</string>
-    <string name="app_name">Project_Java_5778</string>
-    <string name="app_name">Project_Java_5778</string>
-    <string name="app_name">Project_Java_5778</string>
+    <string name="clients">clients</string>
+    <string name="branches">branches</string>
+    <string name="carModels">carModels</string>
+    <string name="cars">cars</string>
 </resources>

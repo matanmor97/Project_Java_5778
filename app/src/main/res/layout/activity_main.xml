@@ -12,25 +12,25 @@
         android:id="@+id/clients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clients" />
+        android:text="@string/clients"/>
 
     <Button
         android:id="@+id/branches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Branches" />
+        android:text="@string/branches" />
 
     <Button
         android:id="@+id/carModels"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Car Models" />
+        android:text="@string/carModels" />
 
     <Button
         android:id="@+id/cars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cars" />
+        android:text="@string/cars" />
 
 
 </LinearLayout>
