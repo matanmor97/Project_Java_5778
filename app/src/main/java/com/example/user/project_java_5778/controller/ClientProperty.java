@@ -2,13 +2,17 @@ package com.example.user.project_java_5778.controller;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.user.project_java_5778.R;
+import com.example.user.project_java_5778.model.backend.DBManagerFactory;
+import com.example.user.project_java_5778.model.backend.DB_manager;
 import com.example.user.project_java_5778.model.backend.TakeGo_Const;
 import com.example.user.project_java_5778.model.datasource.List_DBManager;
 
@@ -22,6 +26,8 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
     private EditText phoneNumber_editText;
     private EditText emailAddress_editText;
     private EditText creditCard_editText;
+    private DB_manager instance = DBManagerFactory.getInstanse();
+
 
     private void findViews() {
         addClient = (Button) findViewById(R.id.addButton);
@@ -37,25 +43,31 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
-        ContentValues contentValues = new ContentValues();
+        final ContentValues contentValues = new ContentValues();
 
-        String lastName = lastName_editText.getText().toString();
-        contentValues.put(TakeGo_Const.ClientConst.lastName, lastName);
+        contentValues.put(TakeGo_Const.ClientConst.lastName, lastName_editText.getText().toString());
+        contentValues.put(TakeGo_Const.ClientConst.firstName, firstName_editText.getText().toString());
+        contentValues.put(TakeGo_Const.ClientConst.phoneNumber, phoneNumber_editText.getText().toString());
+        contentValues.put(TakeGo_Const.ClientConst.emailAddress, emailAddress_editText.getText().toString());
+        contentValues.put(TakeGo_Const.ClientConst.creditCard, creditCard_editText.getText().toString());
 
-        String firstName = firstName_editText.getText().toString();
-        contentValues.put(TakeGo_Const.ClientConst.firstName, firstName);
+        //Toast.makeText(getBaseContext(), "Hello", Toast.LENGTH_LONG).show();
 
-        String phoneNumber = phoneNumber_editText.getText().toString();
-        contentValues.put(TakeGo_Const.ClientConst.phoneNumber, phoneNumber);
+        new AsyncTask<Void, Void, Integer>() {
+            @Override
+            protected void onPostExecute(Integer idResult) {
+                super.onPostExecute(idResult);
+                if (idResult > 0)
+                    Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
+            }
 
-        String emailAddress = emailAddress_editText.getText().toString();
-        contentValues.put(TakeGo_Const.ClientConst.emailAddress, emailAddress);
+            @Override
+            protected Integer doInBackground(Void... params) {
+                return instance.addClient(contentValues);
 
-        String creditCard = creditCard_editText.getText().toString();
-        contentValues.put(TakeGo_Const.ClientConst.creditCard, creditCard);
+            }
+        }.execute();
 
-
-        List_DBManager.clients.add(TakeGo_Const.ContentValueToClient(contentValues));
 
 
     }

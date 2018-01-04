@@ -88,7 +88,7 @@ public class TakeGo_Const {
         Client client = new Client();
         client.setFirstName(contentValues.getAsString(ClientConst.firstName));
         client.setLastName(contentValues.getAsString(ClientConst.lastName));
-        client.setId(contentValues.getAsString(ClientConst.id));
+        client.setId(contentValues.getAsInteger(ClientConst.id));
         client.setPhoneNumber(contentValues.getAsString(ClientConst.phoneNumber));
         client.setEmailAddress(contentValues.getAsString(ClientConst.emailAddress));
         client.setCreditCard(contentValues.getAsString(ClientConst.creditCard));
@@ -99,7 +99,7 @@ public class TakeGo_Const {
     public static ContentValues BranchToContentValues(Branch branch) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(BranchConst.cityName, branch.address.getCityName()); // צריך למצוא איך לגשת אל הערכים של האינר קלאס
+        contentValues.put(BranchConst.cityName, branch.address.getCityName());
         contentValues.put(BranchConst.streetName, branch.address.getStreetName());
         contentValues.put(BranchConst.number, branch.address.getNumber());
         contentValues.put(BranchConst.numOfParkingSpace, branch.getNumOfParkingSpace());

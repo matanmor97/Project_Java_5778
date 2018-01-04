@@ -12,11 +12,11 @@ import java.util.List;
 
 public interface DB_manager {
 
-    boolean CheckClientExist (String id);
+    boolean CheckClientExist (int id);
 
-    String addClient (ContentValues contentValues);
-    boolean removeClient (String id);
-    void updateClient(String id, ContentValues values);
+    int addClient (ContentValues contentValues);
+    boolean removeClient (int id);
+    void updateClient(int id, ContentValues values);
     List<Client> getClients();
 
     int addBranch (ContentValues contentValues);

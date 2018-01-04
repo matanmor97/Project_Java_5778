@@ -16,11 +16,11 @@ import java.util.List;
 
 public class List_DBManager implements DB_manager {
 
-    public static List<Client> clients;
-    public static List<Branch> branches;
-    public static List<CarModel> carModels;
-    public static List<Car> cars;
-    public static List<Invitation> invitations;
+    static List<Client> clients;
+    static List<Branch> branches;
+    static List<CarModel> carModels;
+    static List<Car> cars;
+    static List<Invitation> invitations;
 
     static {
 
@@ -33,7 +33,7 @@ public class List_DBManager implements DB_manager {
 
 
     @Override
-    public boolean CheckClientExist(String id) {
+    public boolean CheckClientExist(int id) {
 
         Client client = GetClient(id);
 
@@ -44,8 +44,9 @@ public class List_DBManager implements DB_manager {
     }
 
 
+    static int ID = 235897210;
 
-    public Client GetClient(String id){
+    public Client GetClient(int id){
         Client client = null;
 
         for (Client c:clients) {
@@ -56,21 +57,22 @@ public class List_DBManager implements DB_manager {
         return client;
     }
     @Override
-    public String addClient(ContentValues contentValues) {
+    public int addClient(ContentValues contentValues) {
 
         Client client = TakeGo_Const.ContentValueToClient(contentValues);
+        client.setId(ID++);
         clients.add(client);
 
         return client.getId();
     }
     @Override
-    public boolean removeClient(String id) {
+    public boolean removeClient(int id) {
 
         Client client = GetClient(id);
         return clients.remove(client);
     }
     @Override
-    public void updateClient(String id, ContentValues values) {
+    public void updateClient(int id, ContentValues values) {
 
         Client client = TakeGo_Const.ContentValueToClient(values);
         clients.set(clients.indexOf(GetClient(id)), client);

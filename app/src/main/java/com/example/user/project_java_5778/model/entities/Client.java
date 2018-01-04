@@ -22,11 +22,11 @@ public class Client {
         return firstName;
     }
 
-    private String id;
-    public void setId(String id) {
+    private int id;
+    public void setId(int id) {
         this.id = id;
     }
-    public String getId () {
+    public int getId () {
         return id;
     }
 

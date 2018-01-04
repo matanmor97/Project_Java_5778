@@ -11,7 +11,7 @@ public class DBManagerFactory {
     private static DB_manager instanse = null;
     private DBManagerFactory (){}
 
-    DB_manager getInstanse (){
+    public static DB_manager getInstanse (){
         if (instanse == null)
             instanse = new List_DBManager();
 
