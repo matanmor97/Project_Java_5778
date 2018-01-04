@@ -18,7 +18,7 @@ public class TakeGo_Const {
         public static final String lastName = "lastName";
         public static final String id = "_id";
         public static final String phoneNumber = "phoneNumber";
-        public static final String emailAdress = "emailAdress";
+        public static final String emailAddress = "emailAddress";
         public static final String creditCard = "creditCard";
     }
 

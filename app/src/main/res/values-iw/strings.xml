@@ -6,4 +6,9 @@
     <string name="branches">סניף</string>
     <string name="carModels">דגם מכונית</string>
     <string name="cars">מכוניות</string>
+
+
+    // Strings for ClientList file:
+    <string name="Name_ClientProperty">שם</string>
+
 </resources>

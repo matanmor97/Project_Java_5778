@@ -1,6 +1,7 @@
 package com.example.user.project_java_5778.controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,7 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Override
     public void onClick(View v) {
+
         if ( v == clients ) {
+
+            Intent myIntent = new Intent(this, ClientProperty.class);
+            startActivity(myIntent);
             // Handle clicks for clients
         } else if ( v == branches ) {
             // Handle clicks for branches

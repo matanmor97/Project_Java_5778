@@ -4,4 +4,15 @@
     <string name="branches">branches</string>
     <string name="carModels">carModels</string>
     <string name="cars">cars</string>
+
+
+    // Strings for ClientList file:
+    <string name="lastName_ClientProperty">Last Name</string>
+    <string name="firstName_ClientProperty">First Name</string>
+    <string name="phoneNumber_ClientProperty">Phone Number</string>
+    <string name="emailAddress_ClientProperty">Email Addrss</string>
+    <string name="creditCard_ClientProperty">Credit Card</string>
+    <string name="addButton">add</string>
+
+
 </resources>

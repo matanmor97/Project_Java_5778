@@ -6,6 +6,8 @@ import android.content.ContentValues;
 import com.example.user.project_java_5778.model.backend.DB_manager;
 import com.example.user.project_java_5778.model.backend.TakeGo_Const;
 import com.example.user.project_java_5778.model.entities.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,11 +16,20 @@ import java.util.List;
 
 public class List_DBManager implements DB_manager {
 
-    static List<Client> clients;
-    static List<Branch> branches;
-    static List<CarModel> carModels;
-    static List<Car> cars;
-    static List<Invitation> invitations;
+    public static List<Client> clients;
+    public static List<Branch> branches;
+    public static List<CarModel> carModels;
+    public static List<Car> cars;
+    public static List<Invitation> invitations;
+
+    static {
+
+        clients = new ArrayList<>();
+        branches = new ArrayList<>();
+        carModels = new ArrayList<>();
+        cars = new ArrayList<>();
+        invitations = new ArrayList<>();
+    }
 
 
     @Override
