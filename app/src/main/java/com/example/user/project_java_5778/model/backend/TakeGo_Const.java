@@ -77,7 +77,7 @@ public class TakeGo_Const {
         contentValues.put(ClientConst.lastName, client.getLastName());
         contentValues.put(ClientConst.id, client.getId());
         contentValues.put(ClientConst.phoneNumber, client.getPhoneNumber());
-        contentValues.put(ClientConst.emailAdress, client.getEmailAdress());
+        contentValues.put(ClientConst.emailAddress, client.getEmailAddress());
         contentValues.put(ClientConst.creditCard, client.getCreditCard());
 
         return contentValues;
@@ -90,7 +90,7 @@ public class TakeGo_Const {
         client.setLastName(contentValues.getAsString(ClientConst.lastName));
         client.setId(contentValues.getAsString(ClientConst.id));
         client.setPhoneNumber(contentValues.getAsString(ClientConst.phoneNumber));
-        client.setEmailAdress(contentValues.getAsString(ClientConst.emailAdress));
+        client.setEmailAddress(contentValues.getAsString(ClientConst.emailAddress));
         client.setCreditCard(contentValues.getAsString(ClientConst.creditCard));
 
         return client;

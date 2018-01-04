@@ -38,12 +38,12 @@ public class Client {
         return phoneNumber;
     }
 
-    private String emailAdress;
-    public void setEmailAdress(String emailAdress) {
-        this.emailAdress = emailAdress;
+    private String emailAddress;
+    public void setEmailAddress(String emailAdress) {
+        this.emailAddress = emailAddress;
     }
-    public String getEmailAdress () {
-        return emailAdress;
+    public String getEmailAddress () {
+        return emailAddress;
     }
 
     private String creditCard;
