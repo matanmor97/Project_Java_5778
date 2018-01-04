@@ -51,7 +51,7 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
         contentValues.put(TakeGo_Const.ClientConst.emailAddress, emailAddress_editText.getText().toString());
         contentValues.put(TakeGo_Const.ClientConst.creditCard, creditCard_editText.getText().toString());
 
-        //Toast.makeText(getBaseContext(), "Hello", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(), "It's working", Toast.LENGTH_LONG).show();
 
         new AsyncTask<Void, Void, Integer>() {
             @Override
@@ -78,7 +78,7 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_property);
 
-
+        findViews();
 
     }
 
