@@ -22,11 +22,11 @@ public class Client {
         return firstName;
     }
 
-    private int id;
-    public void setId(int id) {
+    private long id;
+    public void setId(long id) {
         this.id = id;
     }
-    public int getId () {
+    public long getId () {
         return id;
     }
 

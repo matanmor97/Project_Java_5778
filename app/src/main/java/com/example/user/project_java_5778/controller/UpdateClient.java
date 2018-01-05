@@ -1,6 +1,5 @@
 package com.example.user.project_java_5778.controller;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,13 +13,10 @@ import com.example.user.project_java_5778.R;
 import com.example.user.project_java_5778.model.backend.DBManagerFactory;
 import com.example.user.project_java_5778.model.backend.DB_manager;
 import com.example.user.project_java_5778.model.backend.TakeGo_Const;
-import com.example.user.project_java_5778.model.datasource.List_DBManager;
 
-import com.example.user.project_java_5778.model.backend.TakeGo_Const;
+public class UpdateClient extends AppCompatActivity implements View.OnClickListener {
 
-public class ClientProperty extends AppCompatActivity implements View.OnClickListener {
-
-    private Button addClient;
+    private Button updateClient;
     private EditText lastName_editText;
     private EditText firstName_editText;
     private EditText phoneNumber_editText;
@@ -30,14 +26,14 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
 
 
     private void findViews() {
-        addClient = (Button) findViewById(R.id.addButton);
+        updateClient = (Button) findViewById(R.id.addButton);
         lastName_editText = (EditText) findViewById(R.id.lastName_editText);
         firstName_editText = (EditText) findViewById(R.id.fristName_editText);
         phoneNumber_editText = (EditText) findViewById(R.id.phoneNumber_editText);
         emailAddress_editText = (EditText) findViewById(R.id.emailAddress_editText);
         creditCard_editText = (EditText) findViewById(R.id.creditCard_editText);
 
-        addClient.setOnClickListener( this );
+        updateClient.setOnClickListener( this );
 
 
     }
