@@ -5,6 +5,10 @@ package com.example.user.project_java_5778.model.entities;
  */
 
 public class Client {
+    /*
+    we need to add toString!!
+    constructor??
+     */
 
     private String lastName;
     public void setLastName(String lastName) {
@@ -55,4 +59,8 @@ public class Client {
     }
 
 
+    @Override
+    public String toString() {
+        return getFirstName() + " , " + getLastName()+ " , " +getId();
+    }
 }

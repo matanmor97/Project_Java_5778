@@ -29,6 +29,7 @@ public class List_DBManager implements DB_manager {
         carModels = new ArrayList<>();
         cars = new ArrayList<>();
         invitations = new ArrayList<>();
+
     }
 
 
@@ -77,7 +78,7 @@ public class List_DBManager implements DB_manager {
         Client client = TakeGo_Const.ContentValueToClient(values);
         clients.set(clients.indexOf(GetClient(id)), client);
     }
-    @Override
+
     public List<Client> getClients() {
 
         return clients;

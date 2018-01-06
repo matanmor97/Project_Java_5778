@@ -1,3 +1,5 @@
+
+
 package com.example.user.project_java_5778.controller;
 
 import android.content.ContentValues;
@@ -84,6 +86,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_property);
+
 
         DBManagerFactory.getInstanse().getClients();
 
