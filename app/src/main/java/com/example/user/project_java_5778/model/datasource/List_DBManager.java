@@ -60,8 +60,8 @@ public class List_DBManager implements DB_manager {
     @Override
     public long addClient(ContentValues contentValues) {
 
+        contentValues.put(TakeGo_Const.ClientConst.id, ID++);
         Client client = TakeGo_Const.ContentValueToClient(contentValues);
-        client.setId(ID++);
         clients.add(client);
 
         return client.getId();

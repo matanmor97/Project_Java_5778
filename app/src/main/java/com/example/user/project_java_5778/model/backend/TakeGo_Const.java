@@ -87,18 +87,18 @@ public class TakeGo_Const {
 
         Client client = new Client();
 
-        try {
+        //try {
             client.setFirstName(contentValues.getAsString(ClientConst.firstName));
             client.setLastName(contentValues.getAsString(ClientConst.lastName));
             client.setId(contentValues.getAsLong(ClientConst.id));
             client.setPhoneNumber(contentValues.getAsString(ClientConst.phoneNumber));
             client.setEmailAddress(contentValues.getAsString(ClientConst.emailAddress));
             client.setCreditCard(contentValues.getAsString(ClientConst.creditCard));
-        }
+        //}
 
-        catch (Exception e){
+        //catch (Exception e){
 
-        }
+        //}
         return client;
     }
 
