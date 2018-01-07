@@ -10,7 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.project_java_5778.R;
@@ -73,9 +75,37 @@ public class ClientsList extends Activity implements View.OnClickListener  {
          */
 
         clientList = (ListView)findViewById(R.id.list_view);
-        //we can change the second argument to be ours
+
+        //show in every item on the viewList the Client ToString implementation
         //AsyncTask<Void, Integer, Void>
-        adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getClients());
+        //adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getClients());
+
+        //show in every item on the viewList the row_item.xml
+        //don't working!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        adapter = new ArrayAdapter<Client>(this,R.layout.row_item,instance.getClients())
+        {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent)
+            {
+                if (convertView == null)
+                {
+                    convertView = View.inflate(ClientsList.this,
+                            R.layout.row_item,null);
+                }
+                TextView productIdTextView = (TextView) convertView
+                        .findViewById(R.id.idTextView);
+                TextView productNameTextView = (TextView) convertView
+                        .findViewById(R.id.nameTextView);
+                ImageView productionImageView = (ImageView) convertView
+                        .findViewById(R.id.image_view);
+                productIdTextView.setText((int)instance.getClients().get(position).getId());
+                productNameTextView.setText(instance.getClients().get(position).getFirstName() + " , " + instance.getClients().get(position).getLastName());
+
+                return convertView;
+                 }
+        };
+
+
         clientList.setAdapter(adapter);
 
         /**
