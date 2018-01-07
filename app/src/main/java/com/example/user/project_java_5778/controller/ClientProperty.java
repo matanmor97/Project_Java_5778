@@ -45,40 +45,40 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
-        final ContentValues contentValues = new ContentValues();
+        if (v == addClient) {
+            final ContentValues contentValues = new ContentValues();
 
-        try {
-            contentValues.put(TakeGo_Const.ClientConst.lastName, this.lastName_editText.getText().toString());
-            contentValues.put(TakeGo_Const.ClientConst.firstName, this.firstName_editText.getText().toString());
-            contentValues.put(TakeGo_Const.ClientConst.phoneNumber, this.phoneNumber_editText.getText().toString());
-            contentValues.put(TakeGo_Const.ClientConst.emailAddress, this.emailAddress_editText.getText().toString());
-            contentValues.put(TakeGo_Const.ClientConst.creditCard, this.creditCard_editText.getText().toString());
+            try {
+                contentValues.put(TakeGo_Const.ClientConst.lastName, this.lastName_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.firstName, this.firstName_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.phoneNumber, this.phoneNumber_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.emailAddress, this.emailAddress_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.creditCard, this.creditCard_editText.getText().toString());
 
-            //Toast.makeText(getBaseContext(), "It's working", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), "It's working", Toast.LENGTH_LONG).show();
 
-            new AsyncTask<Void, Void, Long>() {
+                new AsyncTask<Void, Void, Long>() {
 
-                @Override
-                protected Long doInBackground(Void... params) {
-                    return DBManagerFactory.getInstanse().addClient(contentValues);
-                }
+                    @Override
+                    protected Long doInBackground(Void... params) {
+                        return DBManagerFactory.getInstanse().addClient(contentValues);
+                    }
 
-                @Override
-                protected void onPostExecute(Long idResult) {
-                    super.onPostExecute(idResult);
-                    if (idResult > 0)
-                        Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
-                }
+                    @Override
+                    protected void onPostExecute(Long idResult) {
+                        super.onPostExecute(idResult);
+                        if (idResult > 0)
+                            Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
+                    }
 
 
-            }.execute();
+                }.execute();
 
-        }
+            } catch (Exception e) {
 
-        catch (Exception e){
+                Toast.makeText(getBaseContext(), "It's not working", Toast.LENGTH_LONG).show();
 
-            Toast.makeText(getBaseContext(), "It's not working", Toast.LENGTH_LONG).show();
-
+            }
         }
 
     }

@@ -1,6 +1,7 @@
 package com.example.user.project_java_5778.controller;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import com.example.user.project_java_5778.R;
 import com.example.user.project_java_5778.model.backend.DBManagerFactory;
 import com.example.user.project_java_5778.model.backend.DB_manager;
 import com.example.user.project_java_5778.model.backend.TakeGo_Const;
+import com.example.user.project_java_5778.model.datasource.List_DBManager;
+import com.example.user.project_java_5778.model.entities.Client;
 
 public class UpdateClient extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,43 +41,63 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    // initizalization the text in the EditTexts to the current value of the client
+    public void init () {
+
+        Intent intent = getIntent();
+        Long clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
+
+        Client client = null;
+
+        for (Client c:instance.getClients()) {
+            if (c.getId() == clientId)
+                client = c;
+        }
+
+        lastName_editText.setText(client.getLastName());
+        firstName_editText.setText(client.getFirstName());
+        phoneNumber_editText.setText(client.getPhoneNumber());
+        emailAddress_editText.setText(client.getEmailAddress());
+        creditCard_editText.setText(client.getCreditCard());
+    }
+
     @Override
     public void onClick(View v) {
 
-        final ContentValues contentValues = new ContentValues();
+        if (v == updateClient) {
+            final ContentValues contentValues = new ContentValues();
 
-        try {
-            contentValues.put(TakeGo_Const.ClientConst.lastName, this.lastName_editText.getText().toString());
-            contentValues.put(TakeGo_Const.ClientConst.firstName, this.firstName_editText.getText().toString());
-            contentValues.put(TakeGo_Const.ClientConst.phoneNumber, this.phoneNumber_editText.getText().toString());
-            contentValues.put(TakeGo_Const.ClientConst.emailAddress, this.emailAddress_editText.getText().toString());
-            contentValues.put(TakeGo_Const.ClientConst.creditCard, this.creditCard_editText.getText().toString());
+            try {
+                contentValues.put(TakeGo_Const.ClientConst.lastName, this.lastName_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.firstName, this.firstName_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.phoneNumber, this.phoneNumber_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.emailAddress, this.emailAddress_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.creditCard, this.creditCard_editText.getText().toString());
 
-            //Toast.makeText(getBaseContext(), "It's working", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), "It's working", Toast.LENGTH_LONG).show();
 
-            new AsyncTask<Void, Void, Long>() {
+                new AsyncTask<Void, Void, Long>() {
 
-                @Override
-                protected Long doInBackground(Void... params) {
-                    return DBManagerFactory.getInstanse().addClient(contentValues);
-                }
+                    @Override
+                    protected Long doInBackground(Void... params) {
+                        return DBManagerFactory.getInstanse().addClient(contentValues);
+                    }
 
-                @Override
-                protected void onPostExecute(Long idResult) {
-                    super.onPostExecute(idResult);
-                    if (idResult > 0)
-                        Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
-                }
+                    @Override
+                    protected void onPostExecute(Long idResult) {
+                        super.onPostExecute(idResult);
+                        if (idResult > 0)
+                            Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
+                    }
 
 
-            }.execute();
+                }.execute();
 
-        }
+            } catch (Exception e) {
 
-        catch (Exception e){
+                Toast.makeText(getBaseContext(), "It's not working", Toast.LENGTH_LONG).show();
 
-            Toast.makeText(getBaseContext(), "It's not working", Toast.LENGTH_LONG).show();
-
+            }
         }
 
     }
@@ -85,10 +108,8 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_property);
 
-
-        DBManagerFactory.getInstanse().getClients();
-
         findViews();
+        init();
 
     }
 
