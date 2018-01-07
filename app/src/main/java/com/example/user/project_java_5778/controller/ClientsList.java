@@ -2,6 +2,7 @@ package com.example.user.project_java_5778.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +74,7 @@ public class ClientsList extends Activity implements View.OnClickListener  {
 
         clientList = (ListView)findViewById(R.id.list_view);
         //we can change the second argument to be ours
+        //AsyncTask<Void, Integer, Void>
         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getClients());
         clientList.setAdapter(adapter);
 
@@ -92,7 +94,8 @@ public class ClientsList extends Activity implements View.OnClickListener  {
                 Intent myIntent = new Intent(ClientsList.this, UpdateClient.class);
 
                 //put in the intent the id of the clicked client
-                myIntent.putExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY , instance.getClients().get((int)id).getId());
+
+                myIntent.putExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY , instance.getClients().get(position).getId());
 
                 startActivity(myIntent);
             }

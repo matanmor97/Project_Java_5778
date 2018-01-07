@@ -11,4 +11,12 @@
     // Strings for ClientList file:
     <string name="Name_ClientProperty">שם</string>
 
+
+    // Strings for clientProperty
+    <string name="addButton">הוסף</string>
+
+    // Strings for updateClient
+    <string name="updateButton">עדכן</string>
+
+
 </resources>

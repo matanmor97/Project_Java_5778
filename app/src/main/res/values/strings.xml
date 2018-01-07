@@ -12,7 +12,12 @@
     <string name="phoneNumber_ClientProperty">Phone Number</string>
     <string name="emailAddress_ClientProperty">Email Addrss</string>
     <string name="creditCard_ClientProperty">Credit Card</string>
+
+
+    // Strings for clientProperty
     <string name="addButton">add</string>
 
+    // Strings for updateClient
+    <string name="updateButton">update</string>
 
 </resources>

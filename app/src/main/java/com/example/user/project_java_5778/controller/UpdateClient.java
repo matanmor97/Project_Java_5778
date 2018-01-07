@@ -29,12 +29,12 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
 
 
     private void findViews() {
-        updateClient = (Button) findViewById(R.id.addButton);
-        lastName_editText = (EditText) findViewById(R.id.lastName_editText);
-        firstName_editText = (EditText) findViewById(R.id.fristName_editText);
-        phoneNumber_editText = (EditText) findViewById(R.id.phoneNumber_editText);
-        emailAddress_editText = (EditText) findViewById(R.id.emailAddress_editText);
-        creditCard_editText = (EditText) findViewById(R.id.creditCard_editText);
+        updateClient = (Button) findViewById(R.id.addButton_update);
+        lastName_editText = (EditText) findViewById(R.id.lastName_editText_update);
+        firstName_editText = (EditText) findViewById(R.id.fristName_editText_update);
+        phoneNumber_editText = (EditText) findViewById(R.id.phoneNumber_editText_update);
+        emailAddress_editText = (EditText) findViewById(R.id.emailAddress_editText_update);
+        creditCard_editText = (EditText) findViewById(R.id.creditCard_editText_update);
 
         updateClient.setOnClickListener( this );
 
@@ -47,12 +47,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         Long clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
 
-        Client client = null;
-
-        for (Client c:instance.getClients()) {
-            if (c.getId() == clientId)
-                client = c;
-        }
+        Client client = instance.getClient(clientId);
 
         lastName_editText.setText(client.getLastName());
         firstName_editText.setText(client.getFirstName());
@@ -106,7 +101,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_property);
+        setContentView(R.layout.activity_update_client);
 
         findViews();
         init();

@@ -30,12 +30,12 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
 
 
     private void findViews() {
-        addClient = (Button) findViewById(R.id.addButton);
-        lastName_editText = (EditText) findViewById(R.id.lastName_editText);
-        firstName_editText = (EditText) findViewById(R.id.fristName_editText);
-        phoneNumber_editText = (EditText) findViewById(R.id.phoneNumber_editText);
-        emailAddress_editText = (EditText) findViewById(R.id.emailAddress_editText);
-        creditCard_editText = (EditText) findViewById(R.id.creditCard_editText);
+        addClient = (Button) findViewById(R.id.addButton_add);
+        lastName_editText = (EditText) findViewById(R.id.lastName_editText_add);
+        firstName_editText = (EditText) findViewById(R.id.fristName_editText_add);
+        phoneNumber_editText = (EditText) findViewById(R.id.phoneNumber_editText_add);
+        emailAddress_editText = (EditText) findViewById(R.id.emailAddress_editText_add);
+        creditCard_editText = (EditText) findViewById(R.id.creditCard_editText_add);
 
         addClient.setOnClickListener( this );
 
