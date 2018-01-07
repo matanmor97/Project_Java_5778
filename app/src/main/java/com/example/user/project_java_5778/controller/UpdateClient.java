@@ -41,7 +41,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    // initizalization the text in the EditTexts to the current value of the client
+    // initialization the text in the EditTexts to the current value of the client
     public void init () {
 
         Intent intent = getIntent();
