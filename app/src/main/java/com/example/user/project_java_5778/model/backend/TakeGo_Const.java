@@ -73,13 +73,19 @@ public class TakeGo_Const {
     public static ContentValues ClientToContentValues(Client client) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ClientConst.firstName, client.getFirstName());
-        contentValues.put(ClientConst.lastName, client.getLastName());
-        contentValues.put(ClientConst.id, client.getId());
-        contentValues.put(ClientConst.phoneNumber, client.getPhoneNumber());
-        contentValues.put(ClientConst.emailAddress, client.getEmailAddress());
-        contentValues.put(ClientConst.creditCard, client.getCreditCard());
 
+        try {
+            contentValues.put(ClientConst.firstName, client.getFirstName());
+            contentValues.put(ClientConst.lastName, client.getLastName());
+            contentValues.put(ClientConst.id, client.getId());
+            contentValues.put(ClientConst.phoneNumber, client.getPhoneNumber());
+            contentValues.put(ClientConst.emailAddress, client.getEmailAddress());
+            contentValues.put(ClientConst.creditCard, client.getCreditCard());
+        }
+
+        catch (Exception e){
+
+        }
         return contentValues;
     }
 
@@ -87,90 +93,127 @@ public class TakeGo_Const {
 
         Client client = new Client();
 
-        //try {
+        try {
             client.setFirstName(contentValues.getAsString(ClientConst.firstName));
             client.setLastName(contentValues.getAsString(ClientConst.lastName));
             client.setId(contentValues.getAsLong(ClientConst.id));
             client.setPhoneNumber(contentValues.getAsString(ClientConst.phoneNumber));
             client.setEmailAddress(contentValues.getAsString(ClientConst.emailAddress));
             client.setCreditCard(contentValues.getAsString(ClientConst.creditCard));
-        //}
+        }
 
-        //catch (Exception e){
+        catch (Exception e){
 
-        //}
+        }
         return client;
     }
 
     public static ContentValues BranchToContentValues(Branch branch) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(BranchConst.cityName, branch.address.getCityName());
-        contentValues.put(BranchConst.streetName, branch.address.getStreetName());
-        contentValues.put(BranchConst.number, branch.address.getNumber());
-        contentValues.put(BranchConst.numOfParkingSpace, branch.getNumOfParkingSpace());
-        contentValues.put(BranchConst.branchNumber, branch.getBranchNumber());
 
+        try {
+            contentValues.put(BranchConst.cityName, branch.address.getCityName());
+            contentValues.put(BranchConst.streetName, branch.address.getStreetName());
+            contentValues.put(BranchConst.number, branch.address.getNumber());
+            contentValues.put(BranchConst.numOfParkingSpace, branch.getNumOfParkingSpace());
+            contentValues.put(BranchConst.branchNumber, branch.getBranchNumber());
+        }
+
+        catch (Exception e){
+
+        }
         return contentValues;
     }
 
     public static Branch ContentValueToBranch(ContentValues contentValues) {
 
         Branch branch = new Branch();
-        branch.address.setCityName(contentValues.getAsString(BranchConst.cityName));
-        branch.address.setStreetName(contentValues.getAsString(BranchConst.streetName));
-        branch.address.setNumber(contentValues.getAsInteger(BranchConst.number));
-        branch.setNumOfParkingSpac(contentValues.getAsInteger(BranchConst.numOfParkingSpace));
-        branch.setBranchNumber(contentValues.getAsInteger(BranchConst.number));
 
+        try {
+            branch.address.setCityName(contentValues.getAsString(BranchConst.cityName));
+            branch.address.setStreetName(contentValues.getAsString(BranchConst.streetName));
+            branch.address.setNumber(contentValues.getAsInteger(BranchConst.number));
+            branch.setNumOfParkingSpac(contentValues.getAsInteger(BranchConst.numOfParkingSpace));
+            branch.setBranchNumber(contentValues.getAsInteger(BranchConst.number));
+        }
+        catch (Exception e) {
+
+        }
         return branch;
     }
 
     public static ContentValues CarModelToContentValues(CarModel carModel) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(CarModelConst.modelCode, carModel.getModelCode());
-        contentValues.put(CarModelConst.companyName, carModel.getCompanyName());
-        contentValues.put(CarModelConst.modelName, carModel.getModelName());
-        contentValues.put(CarModelConst.engineCapacity, carModel.getEngineCapacity());
-        contentValues.put(CarModelConst.gearbox, carModel.getGearbox().ordinal());
-        contentValues.put(CarModelConst.seats, carModel.getSeats());
 
+        try {
+            contentValues.put(CarModelConst.modelCode, carModel.getModelCode());
+            contentValues.put(CarModelConst.companyName, carModel.getCompanyName());
+            contentValues.put(CarModelConst.modelName, carModel.getModelName());
+            contentValues.put(CarModelConst.engineCapacity, carModel.getEngineCapacity());
+            contentValues.put(CarModelConst.gearbox, carModel.getGearbox().ordinal());
+            contentValues.put(CarModelConst.seats, carModel.getSeats());
+        }
+
+        catch (Exception e){
+
+        }
         return contentValues;
     }
 
     public static CarModel ContentValueToCarModel(ContentValues contentValues) {
 
         CarModel carModel = new CarModel();
-        carModel.setModelCode(contentValues.getAsString(CarModelConst.modelCode));
-        carModel.setCompanyName(contentValues.getAsString(CarModelConst.companyName));
-        carModel.setModelName(contentValues.getAsString(CarModelConst.modelName));
-        carModel.setEngineCapacity(contentValues.getAsString(CarModelConst.engineCapacity));
-        carModel.setGearbox(CarModel.Gearbox.values()[contentValues.getAsInteger(CarModelConst.gearbox)]);
-        carModel.setSeats(contentValues.getAsInteger(CarModelConst.seats));
 
+        try {
+            carModel.setModelCode(contentValues.getAsString(CarModelConst.modelCode));
+            carModel.setCompanyName(contentValues.getAsString(CarModelConst.companyName));
+            carModel.setModelName(contentValues.getAsString(CarModelConst.modelName));
+            carModel.setEngineCapacity(contentValues.getAsString(CarModelConst.engineCapacity));
+            carModel.setGearbox(CarModel.Gearbox.values()[contentValues.getAsInteger(CarModelConst.gearbox)]);
+            carModel.setSeats(contentValues.getAsInteger(CarModelConst.seats));
+        }
+
+        catch (Exception e){
+
+        }
         return carModel;
     }
 
     public static ContentValues CarToContentValues(Car car) {
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(CarConst.branchNumber, car.getBranchNumber());
-        contentValues.put(CarConst.carModel, car.getCarModel().toString());
-        contentValues.put(CarConst.kilometers, car.getKilometers());
-        contentValues.put(CarConst.carNumber, car.getCarNumber());
 
+        ContentValues contentValues = new ContentValues();
+
+        try {
+            contentValues.put(CarConst.branchNumber, car.getBranchNumber());
+            contentValues.put(CarConst.carModel, car.getCarModel().toString());
+            contentValues.put(CarConst.kilometers, car.getKilometers());
+            contentValues.put(CarConst.carNumber, car.getCarNumber());
+        }
+
+        catch (Exception e){
+
+        }
         return contentValues;
     }
 
     public static Car ContentValueToCar(ContentValues contentValues) {
 
-        Car car = new Car();
-        car.setBranchNumber(contentValues.getAsInteger(CarConst.branchNumber));
-        car.setCarModel(StringToCarModel(contentValues.getAsString(CarConst.carModel)));
-        car.setKilometers(contentValues.getAsInteger(CarConst.kilometers));
-        car.setCarNumber(contentValues.getAsInteger(CarConst.carNumber));
 
+            Car car = new Car();
+
+        try {
+            car.setBranchNumber(contentValues.getAsInteger(CarConst.branchNumber));
+            car.setKilometers(contentValues.getAsInteger(CarConst.kilometers));
+            car.setCarNumber(contentValues.getAsInteger(CarConst.carNumber));
+            car.setCarModel(StringToCarModel(contentValues.getAsString(CarConst.carModel)));
+        }
+
+        catch (Exception e) {
+
+        }
         return car;
     }
 
