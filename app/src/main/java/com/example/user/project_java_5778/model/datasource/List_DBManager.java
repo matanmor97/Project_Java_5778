@@ -36,7 +36,7 @@ public class List_DBManager implements DB_manager {
     @Override
     public boolean CheckClientExist(long id) {
 
-        Client client = GetClient(id);
+        Client client = getClient(id);
 
         if (client != null)
             return true;
@@ -47,7 +47,8 @@ public class List_DBManager implements DB_manager {
 
     static long ID = 235897210;
 
-    public Client GetClient(long id){
+    @Override
+    public Client getClient(long id){
         Client client = null;
 
         for (Client c:clients) {
@@ -69,14 +70,14 @@ public class List_DBManager implements DB_manager {
     @Override
     public boolean removeClient(long id) {
 
-        Client client = GetClient(id);
+        Client client = getClient(id);
         return clients.remove(client);
     }
     @Override
     public void updateClient(long id, ContentValues values) {
 
         Client client = TakeGo_Const.ContentValueToClient(values);
-        clients.set(clients.indexOf(GetClient(id)), client);
+        clients.set(clients.indexOf(getClient(id)), client);
     }
 
     public List<Client> getClients() {

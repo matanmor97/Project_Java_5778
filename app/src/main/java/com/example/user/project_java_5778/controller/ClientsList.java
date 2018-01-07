@@ -72,6 +72,7 @@ public class ClientsList extends Activity implements View.OnClickListener  {
          */
 
         clientList = (ListView)findViewById(R.id.list_view);
+        //we can change the second argument to be ours
         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getClients());
         clientList.setAdapter(adapter);
 
@@ -90,7 +91,8 @@ public class ClientsList extends Activity implements View.OnClickListener  {
                 //don't working!!!!!!!!!!!!!!!!!!!!!!!!!
                 Intent myIntent = new Intent(ClientsList.this, UpdateClient.class);
 
-                //myIntent.putExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY,)
+                //put in the intent the id of the clicked client
+                myIntent.putExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY , instance.getClients().get((int)id).getId());
 
                 startActivity(myIntent);
             }

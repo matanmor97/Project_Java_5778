@@ -14,6 +14,7 @@ public interface DB_manager {
 
     boolean CheckClientExist (long id);
 
+    public Client getClient(long id);
     long addClient (ContentValues contentValues);
     boolean removeClient (long id);
     void updateClient(long id, ContentValues values);
