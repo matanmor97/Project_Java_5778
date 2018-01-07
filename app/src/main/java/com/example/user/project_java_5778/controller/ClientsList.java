@@ -21,7 +21,7 @@ import com.example.user.project_java_5778.model.entities.Car;
 import com.example.user.project_java_5778.model.entities.Client;
 
 
-//need to add SEARCH and ADD NEW option
+//need to add SEARCH option
 
 public class ClientsList extends Activity implements View.OnClickListener  {
 

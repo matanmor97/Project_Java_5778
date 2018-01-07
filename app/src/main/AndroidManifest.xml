@@ -18,7 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.ClientsList" />
-        <activity android:name=".controller.ClientProperty"></activity>
+        <activity android:name=".controller.ClientProperty"/>
+        <activity android:name=".controller.UpdateClient"/>
+
     </application>
 
 </manifest>
