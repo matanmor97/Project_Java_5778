@@ -86,8 +86,12 @@ public class ClientsList extends Activity implements View.OnClickListener  {
                 //only for example
                 Toast.makeText(ClientsList.this,"need to move to different activity/fragments",Toast.LENGTH_SHORT).show();
 
-                //open the ClientProperty Activity
-                Intent myIntent = new Intent(ClientsList.this, ClientProperty.class);
+                //open the UpdateClient Activity
+                //don't working!!!!!!!!!!!!!!!!!!!!!!!!!
+                Intent myIntent = new Intent(ClientsList.this, UpdateClient.class);
+
+                //myIntent.putExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY,)
+
                 startActivity(myIntent);
             }
         });

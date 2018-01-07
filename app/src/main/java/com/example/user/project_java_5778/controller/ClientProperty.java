@@ -1,6 +1,3 @@
-//something wrong!!!!!!!!!!!!!!! onCreate
-
-
 package com.example.user.project_java_5778.controller;
 
 import android.app.Activity;
@@ -91,7 +88,6 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_property);
-
 
 
         DBManagerFactory.getInstanse().getClients();

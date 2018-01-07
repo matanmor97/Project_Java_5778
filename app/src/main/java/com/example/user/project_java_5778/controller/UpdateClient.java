@@ -1,5 +1,3 @@
-
-
 package com.example.user.project_java_5778.controller;
 
 import android.content.ContentValues;
