@@ -175,13 +175,15 @@ public class ClientsList extends Activity implements View.OnClickListener  {
         setContentView(R.layout.activity_clients_list);
 
         init();
-        clientListView();
+        //clientListView();
 
 
         findViews();
     }
 
-
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        clientListView();
+    }
 }

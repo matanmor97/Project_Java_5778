@@ -69,6 +69,7 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
                         super.onPostExecute(idResult);
                         if (idResult > 0)
                             Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
+                        finish();
                     }
 
 
