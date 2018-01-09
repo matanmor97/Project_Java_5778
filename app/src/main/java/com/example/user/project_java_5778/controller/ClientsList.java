@@ -108,24 +108,6 @@ public class ClientsList extends Activity implements View.OnClickListener  {
 
                 return convertView;
             }
-
-           /* filter
-            @NonNull
-            @Override
-            public Filter getFilter() {
-
-                return new Filter() {
-                    @Override
-                    protected FilterResults performFiltering(CharSequence constraint) {
-                        return null;
-                    }
-
-                    @Override
-                    protected void publishResults(CharSequence constraint, FilterResults results) {
-
-                    }
-                };
-            }*/
         };
 
 
@@ -140,7 +122,7 @@ public class ClientsList extends Activity implements View.OnClickListener  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //only for example
-                Toast.makeText(ClientsList.this,"need to move to different activity/fragments",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ClientsList.this,"UPDATE",Toast.LENGTH_SHORT).show();
 
                 //open the UpdateClient Activity
                 //don't working!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -179,14 +161,13 @@ public class ClientsList extends Activity implements View.OnClickListener  {
         if ( v == addButton ) {
 
             //only for example
-            Toast.makeText(ClientsList.this,"need to move to different activity/fragments",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ClientsList.this,"ADD",Toast.LENGTH_SHORT).show();
 
             //open the ClientProperty Activity
             Intent myIntent = new Intent(ClientsList.this, ClientProperty.class);
             startActivity(myIntent);
         }
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
