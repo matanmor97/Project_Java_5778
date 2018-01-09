@@ -126,7 +126,7 @@ public class ClientsList extends Activity implements View.OnClickListener  {
             }
         });
 
-        int a;
+
 
 
 
