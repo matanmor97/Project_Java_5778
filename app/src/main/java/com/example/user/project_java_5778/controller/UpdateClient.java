@@ -71,21 +71,22 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
 
                 //Toast.makeText(getBaseContext(), "It's working", Toast.LENGTH_LONG).show();
 
-                new AsyncTask<Void, Void, Long>() {
+                new AsyncTask<Void, Void, Void>() {
 
                     @Override
-                    protected Long doInBackground(Void... params) {
-                        return DBManagerFactory.getInstanse().addClient(contentValues);
+                    protected Void doInBackground(Void... params) {
+
+                        long id = contentValues.getAsLong(TakeGo_Const.ClientConst.id);
+                        DBManagerFactory.getInstanse().updateClient(id ,contentValues);
+
+                        return null;
                     }
 
                     @Override
-                    protected void onPostExecute(Long idResult) {
-                        super.onPostExecute(idResult);
-                        if (idResult > 0)
-                            Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
+                    protected void onPostExecute(Void result) {
+
+                        Toast.makeText(getBaseContext(), "UPDATE", Toast.LENGTH_SHORT).show();
                     }
-
-
                 }.execute();
 
             } catch (Exception e) {
