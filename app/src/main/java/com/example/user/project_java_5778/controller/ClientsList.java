@@ -98,7 +98,7 @@ public class ClientsList extends Activity implements View.OnClickListener  {
                 TextView productNameTextView = (TextView) convertView
                         .findViewById(R.id.nameTextView);
                 ImageView productionImageView = (ImageView) convertView
-                        .findViewById(R.id.);
+                        .findViewById(R.id.image_view);
                 //put the data in the views
                 productIdTextView.setText(Long.toString(instance.getClients().get(position).getId()));
                 productNameTextView.setText(instance.getClients().get(position).getFirstName() + " , " + instance.getClients().get(position).getLastName());
