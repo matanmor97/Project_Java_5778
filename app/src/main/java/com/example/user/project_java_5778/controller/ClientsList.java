@@ -24,6 +24,7 @@ import com.example.user.project_java_5778.model.entities.Car;
 import com.example.user.project_java_5778.model.entities.Client;
 
 
+
 //need to add SEARCH option
 
 public class ClientsList extends Activity implements View.OnClickListener  {
@@ -67,21 +68,13 @@ public class ClientsList extends Activity implements View.OnClickListener  {
      */
     private void clientListView() {
 
-
-        /**
-         * show the ArrayList of the client in the ViewList
-         * using the adapter
-         *(i don't know what is the second argument on the ArrayAdapter constructor)
-         */
-
         clientList = (ListView)findViewById(R.id.list_view);
 
         //show in every item on the viewList the Client ToString implementation
-        //AsyncTask<Void, Integer, Void>
+        //AsyncTask<Void, Integer, Void>???
         //adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getClients());
 
         //show in every item on the viewList the row_item.xml
-        //don't working!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         adapter = new ArrayAdapter<Client>(this,R.layout.row_item,instance.getClients())
         {
             @Override
@@ -133,7 +126,12 @@ public class ClientsList extends Activity implements View.OnClickListener  {
             }
         });
 
+
+
+
+
     }
+
 
     /**
      * Find the Views in the layout
