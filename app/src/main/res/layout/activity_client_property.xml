@@ -22,13 +22,29 @@
     android:layout_toRightOf="@+id/clients"
     android:layout_toEndOf="@+id/clients" />
 
+
+    <EditText
+        android:id="@+id/fristName_editText_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="77dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/firstName_ClientProperty"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/clients"
+        android:layout_toEndOf="@+id/clients" />
+
+
     <EditText
         android:id="@+id/lastName_editText_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="77dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/lastName_ClientProperty"
@@ -37,19 +53,7 @@
         android:layout_toEndOf="@+id/clients" />
 
 
-    <EditText
-        android:id="@+id/fristName_editText_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/firstName_ClientProperty"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/clients"
-        android:layout_toEndOf="@+id/clients" />
+
 
     <EditText
         android:id="@+id/phoneNumber_editText_add"

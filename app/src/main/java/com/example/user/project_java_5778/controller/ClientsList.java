@@ -98,13 +98,16 @@ public class ClientsList extends Activity implements View.OnClickListener  {
                 //Find the Views in the layout
                 TextView productIdTextView = (TextView) convertView
                         .findViewById(R.id.idTextView);
-                TextView productNameTextView = (TextView) convertView
-                        .findViewById(R.id.nameTextView);
+                TextView productFirstNameTextView = (TextView) convertView
+                        .findViewById(R.id.firstNameTextView);
+                TextView productLastNameTextView = (TextView) convertView
+                        .findViewById(R.id.lastNameTextView);
                 ImageView productionImageView = (ImageView) convertView
                         .findViewById(R.id.image_view);
                 //put the data in the views
-                productIdTextView.setText(Long.toString(instance.getClients().get(position).getId()));
-                productNameTextView.setText(instance.getClients().get(position).getFirstName() + " , " + instance.getClients().get(position).getLastName());
+                productIdTextView.setText("ID: " + Long.toString(instance.getClients().get(position).getId()));
+                productFirstNameTextView.setText("First Name: " + instance.getClients().get(position).getFirstName());
+                productLastNameTextView.setText("Last Name: " + instance.getClients().get(position).getLastName());
 
                 return convertView;
             }
@@ -125,7 +128,6 @@ public class ClientsList extends Activity implements View.OnClickListener  {
                 Toast.makeText(ClientsList.this,"UPDATE",Toast.LENGTH_SHORT).show();
 
                 //open the UpdateClient Activity
-                //don't working!!!!!!!!!!!!!!!!!!!!!!!!!
                 Intent myIntent = new Intent(ClientsList.this, UpdateClient.class);
 
                 //put in the intent the id of the clicked client
@@ -176,8 +178,6 @@ public class ClientsList extends Activity implements View.OnClickListener  {
 
         init();
         //clientListView();
-
-
         findViews();
     }
 
