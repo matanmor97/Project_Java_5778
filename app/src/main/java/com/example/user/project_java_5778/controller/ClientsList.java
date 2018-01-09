@@ -1,15 +1,21 @@
 package com.example.user.project_java_5778.controller;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +29,7 @@ import com.example.user.project_java_5778.model.datasource.List_DBManager;
 import com.example.user.project_java_5778.model.entities.Car;
 import com.example.user.project_java_5778.model.entities.Client;
 
+import java.util.List;
 
 
 //need to add SEARCH option
@@ -33,6 +40,9 @@ public class ClientsList extends Activity implements View.OnClickListener  {
     private Button addButton;
     private ListView clientList;
     ArrayAdapter<Client> adapter;
+
+
+
 
     /**
      * initialization
@@ -97,7 +107,25 @@ public class ClientsList extends Activity implements View.OnClickListener  {
                 productNameTextView.setText(instance.getClients().get(position).getFirstName() + " , " + instance.getClients().get(position).getLastName());
 
                 return convertView;
-                 }
+            }
+
+           /* filter
+            @NonNull
+            @Override
+            public Filter getFilter() {
+
+                return new Filter() {
+                    @Override
+                    protected FilterResults performFiltering(CharSequence constraint) {
+                        return null;
+                    }
+
+                    @Override
+                    protected void publishResults(CharSequence constraint, FilterResults results) {
+
+                    }
+                };
+            }*/
         };
 
 
@@ -126,7 +154,7 @@ public class ClientsList extends Activity implements View.OnClickListener  {
             }
         });
 
-        int a;
+
 
 
 
