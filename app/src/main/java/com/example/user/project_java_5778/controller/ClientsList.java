@@ -123,7 +123,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
                                 filterClients.add(c);
                             }
                         }
-                        notifyDataSetChanged();
+                        //notifyDataSetChanged();
                         //filterResults.values = filterClients;
                         //filterResults.count = filterClients.size();
 
@@ -150,7 +150,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
-                //adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
                 return false;
             }
         });
