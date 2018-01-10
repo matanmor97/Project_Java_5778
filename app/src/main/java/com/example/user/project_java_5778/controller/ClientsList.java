@@ -88,21 +88,26 @@ public class ClientsList extends Activity implements View.OnClickListener {
         //show in every item on the viewList the row_item.xml
         adapter = new ArrayAdapter<Client>(this, R.layout.row_item, filterClients) {
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
+            public View getView(int position, View convertView, ViewGroup parent)
+            {
+                if (convertView == null)
+                {
                     convertView = View.inflate(ClientsList.this,
-                            R.layout.row_item, null);
+                            R.layout.row_item,null);
                 }
                 //Find the Views in the layout
                 TextView productIdTextView = (TextView) convertView
                         .findViewById(R.id.idTextView);
-                TextView productNameTextView = (TextView) convertView
+                TextView productFirstNameTextView = (TextView) convertView
+                        .findViewById(R.id.firstNameTextView);
+                TextView productLastNameTextView = (TextView) convertView
                         .findViewById(R.id.lastNameTextView);
                 ImageView productionImageView = (ImageView) convertView
                         .findViewById(R.id.image_view);
                 //put the data in the views
-                productIdTextView.setText(Long.toString(instance.getClients().get(position).getId()));
-                productNameTextView.setText(instance.getClients().get(position).getFirstName() + " , " + instance.getClients().get(position).getLastName());
+                productIdTextView.setText("ID: " + Long.toString(instance.getClients().get(position).getId()));
+                productFirstNameTextView.setText("First Name: " + instance.getClients().get(position).getFirstName());
+                productLastNameTextView.setText("Last Name: " + instance.getClients().get(position).getLastName());
 
                 return convertView;
             }

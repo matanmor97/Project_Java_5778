@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button carModels;
     private Button cars;
     /**
-     * Find the Views in the layout
+     * Find the Views in the layout.
      */
     private void findViews() {
         clients = (Button)findViewById( R.id.clients );

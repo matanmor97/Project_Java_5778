@@ -26,11 +26,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
     private EditText emailAddress_editText;
     private EditText creditCard_editText;
     private DB_manager instance = DBManagerFactory.getInstanse();
-
-    //get the id of the chosen client from the listView in ClientList
-    private Intent intent = getIntent();
-    private Long clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
-
+    private Long clientId;
 
     private void findViews() {
         updateClient = (Button) findViewById(R.id.addButton_update);
@@ -48,8 +44,8 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
     // initialization the text in the EditTexts to the current value of the client
     public void init () {
 
-        //Intent intent = getIntent();
-        //Long clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
+        Intent intent = getIntent();
+        clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
 
         Client client = instance.getClient(clientId);
 
@@ -69,30 +65,28 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
             try {
                 contentValues.put(TakeGo_Const.ClientConst.lastName, this.lastName_editText.getText().toString());
                 contentValues.put(TakeGo_Const.ClientConst.firstName, this.firstName_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.id, clientId);
                 contentValues.put(TakeGo_Const.ClientConst.phoneNumber, this.phoneNumber_editText.getText().toString());
                 contentValues.put(TakeGo_Const.ClientConst.emailAddress, this.emailAddress_editText.getText().toString());
                 contentValues.put(TakeGo_Const.ClientConst.creditCard, this.creditCard_editText.getText().toString());
-                contentValues.put(TakeGo_Const.ClientConst.id,this.clientId);
 
                 //Toast.makeText(getBaseContext(), "It's working", Toast.LENGTH_LONG).show();
 
-                new AsyncTask<Void, Void, Long>() {
+                new AsyncTask<Void, Void, Void>() {
 
                     @Override
-                    protected Long doInBackground(Void... params) {
-                        instance.updateClient(clientId,contentValues);
-                        return clientId;
+                    protected Void doInBackground(Void... params) {
+                        DBManagerFactory.getInstanse().updateClient(clientId ,contentValues);
+
+                        return null;
                     }
 
                     @Override
-                    protected void onPostExecute(Long idResult) {
-                        super.onPostExecute(idResult);
-                        if (idResult > 0)
-                            Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
+                    protected void onPostExecute(Void result) {
+
+                        Toast.makeText(getBaseContext(), "UPDATE", Toast.LENGTH_SHORT).show();
                         finish();
                     }
-
-
                 }.execute();
 
             } catch (Exception e) {
