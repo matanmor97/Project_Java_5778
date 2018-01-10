@@ -27,6 +27,10 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
     private EditText creditCard_editText;
     private DB_manager instance = DBManagerFactory.getInstanse();
 
+    //get the id of the chosen client from the listView in ClientList
+    private Intent intent = getIntent();
+    private Long clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
+
 
     private void findViews() {
         updateClient = (Button) findViewById(R.id.addButton_update);
@@ -44,8 +48,8 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
     // initialization the text in the EditTexts to the current value of the client
     public void init () {
 
-        Intent intent = getIntent();
-        Long clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
+        //Intent intent = getIntent();
+        //Long clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
 
         Client client = instance.getClient(clientId);
 
@@ -68,6 +72,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
                 contentValues.put(TakeGo_Const.ClientConst.phoneNumber, this.phoneNumber_editText.getText().toString());
                 contentValues.put(TakeGo_Const.ClientConst.emailAddress, this.emailAddress_editText.getText().toString());
                 contentValues.put(TakeGo_Const.ClientConst.creditCard, this.creditCard_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.id,this.clientId);
 
                 //Toast.makeText(getBaseContext(), "It's working", Toast.LENGTH_LONG).show();
 
@@ -75,7 +80,8 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
 
                     @Override
                     protected Long doInBackground(Void... params) {
-                        return DBManagerFactory.getInstanse().addClient(contentValues);
+                        instance.updateClient(clientId,contentValues);
+                        return clientId;
                     }
 
                     @Override
@@ -83,6 +89,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
                         super.onPostExecute(idResult);
                         if (idResult > 0)
                             Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
+                        finish();
                     }
 
 

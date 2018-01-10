@@ -11,9 +11,9 @@ public class Car {
     public void setBranchNumber (int branchNUmber){this.branchNumber = branchNumber;}
     public int getBranchNumber  (){return this.branchNumber;}
 
-    private CarModel carModel;
-    public void setCarModel (CarModel carModel){this.carModel = carModel;}
-    public CarModel getCarModel (){return this.carModel;}
+    private String carModelCode;
+    public void setCarModel (String carModel){this.carModelCode = carModel;}
+    public String getCarModel (){return this.carModelCode;}
 
     private int kilometers;
     public void setKilometers (int kilometers){

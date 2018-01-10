@@ -31,17 +31,17 @@ public class CarModel {
 
     private String modelName;
     public void setModelName (String modelName){
-        this.modelName = modelCode;
+        this.modelName = modelName;
     }
     public String getModelName (){
         return this.modelName;
     }
 
-    private String engineCapacity;
-    public void setEngineCapacity (String engineCapacity){
-        this.engineCapacity = modelCode;
+    private int engineCapacity;
+    public void setEngineCapacity (int engineCapacity){
+        this.engineCapacity = engineCapacity;
     }
-    public String getEngineCapacity (){
+    public int getEngineCapacity (){
         return this.engineCapacity;
     }
 

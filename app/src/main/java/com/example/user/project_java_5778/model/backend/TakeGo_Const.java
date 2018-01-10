@@ -66,7 +66,7 @@ public class TakeGo_Const {
         carModel.setModelCode(temp[0]);
         carModel.setCompanyName(temp[1]);
         carModel.setModelName(temp[2]);
-        carModel.setEngineCapacity(temp[3]);
+        carModel.setEngineCapacity(Integer.parseInt(temp[3]));
         carModel.setGearbox(CarModel.Gearbox.values()[Integer.parseInt(temp[4])]);
         carModel.setSeats(Integer.parseInt(temp[5]));
 
@@ -175,7 +175,7 @@ public class TakeGo_Const {
             carModel.setModelCode(contentValues.getAsString(CarModelConst.modelCode));
             carModel.setCompanyName(contentValues.getAsString(CarModelConst.companyName));
             carModel.setModelName(contentValues.getAsString(CarModelConst.modelName));
-            carModel.setEngineCapacity(contentValues.getAsString(CarModelConst.engineCapacity));
+            carModel.setEngineCapacity(contentValues.getAsInteger(CarModelConst.engineCapacity));
             carModel.setGearbox(CarModel.Gearbox.values()[contentValues.getAsInteger(CarModelConst.gearbox)]);
             carModel.setSeats(contentValues.getAsInteger(CarModelConst.seats));
         }
@@ -193,7 +193,7 @@ public class TakeGo_Const {
 
         try {
             contentValues.put(CarConst.branchNumber, car.getBranchNumber());
-            contentValues.put(CarConst.carModel, car.getCarModel().toString());
+            contentValues.put(CarConst.carModel, car.getCarModel());
             contentValues.put(CarConst.kilometers, car.getKilometers());
             contentValues.put(CarConst.carNumber, car.getCarNumber());
         }
@@ -213,7 +213,7 @@ public class TakeGo_Const {
             car.setBranchNumber(contentValues.getAsInteger(CarConst.branchNumber));
             car.setKilometers(contentValues.getAsInteger(CarConst.kilometers));
             car.setCarNumber(contentValues.getAsInteger(CarConst.carNumber));
-            car.setCarModel(StringToCarModel(contentValues.getAsString(CarConst.carModel)));
+            car.setCarModel(contentValues.getAsString(CarConst.carModel));
         }
 
         catch (Exception e) {

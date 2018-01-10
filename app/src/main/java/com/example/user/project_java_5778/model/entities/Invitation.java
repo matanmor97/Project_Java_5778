@@ -24,11 +24,11 @@ public class Invitation {
         return typeOfInvantaion;
     }
 
-    private String carNumber;
-    public void setCarNumber(String carNumber) {
+    private int carNumber;
+    public void setCarNumber(int carNumber) {
         this.carNumber = carNumber;
     }
-    public String getCarNumber () {
+    public int getCarNumber () {
         return carNumber;
     }
 

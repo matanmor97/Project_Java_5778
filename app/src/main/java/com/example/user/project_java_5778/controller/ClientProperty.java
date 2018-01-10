@@ -61,7 +61,7 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
 
                     @Override
                     protected Long doInBackground(Void... params) {
-                        return DBManagerFactory.getInstanse().addClient(contentValues);
+                        return instance.addClient(contentValues);
                     }
 
                     @Override
