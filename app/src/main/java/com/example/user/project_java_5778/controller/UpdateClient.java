@@ -26,7 +26,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
     private EditText emailAddress_editText;
     private EditText creditCard_editText;
     private DB_manager instance = DBManagerFactory.getInstanse();
-
+    private Long clientId;
 
     private void findViews() {
         updateClient = (Button) findViewById(R.id.addButton_update);
@@ -45,7 +45,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
     public void init () {
 
         Intent intent = getIntent();
-        Long clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
+        clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
 
         Client client = instance.getClient(clientId);
 
@@ -65,6 +65,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
             try {
                 contentValues.put(TakeGo_Const.ClientConst.lastName, this.lastName_editText.getText().toString());
                 contentValues.put(TakeGo_Const.ClientConst.firstName, this.firstName_editText.getText().toString());
+                contentValues.put(TakeGo_Const.ClientConst.id, clientId);
                 contentValues.put(TakeGo_Const.ClientConst.phoneNumber, this.phoneNumber_editText.getText().toString());
                 contentValues.put(TakeGo_Const.ClientConst.emailAddress, this.emailAddress_editText.getText().toString());
                 contentValues.put(TakeGo_Const.ClientConst.creditCard, this.creditCard_editText.getText().toString());
@@ -75,9 +76,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
 
                     @Override
                     protected Void doInBackground(Void... params) {
-
-                        long id = contentValues.getAsLong(TakeGo_Const.ClientConst.id);
-                        DBManagerFactory.getInstanse().updateClient(id ,contentValues);
+                        DBManagerFactory.getInstanse().updateClient(clientId ,contentValues);
 
                         return null;
                     }
@@ -86,6 +85,7 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
                     protected void onPostExecute(Void result) {
 
                         Toast.makeText(getBaseContext(), "UPDATE", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 }.execute();
 

@@ -1,9 +1,12 @@
 package com.example.user.project_java_5778.controller;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -39,6 +43,9 @@ public class ClientsList extends Activity implements View.OnClickListener {
     private Button addButton;
     private ListView clientList;
     ArrayAdapter<Client> adapter;
+
+
+
 
     /**
      * initialization
@@ -77,8 +84,6 @@ public class ClientsList extends Activity implements View.OnClickListener {
         final List<Client> filterClients = new ArrayList<>();
         filterClients.addAll(instance.getClients());
         //show in every item on the viewList the Client ToString implementation
-        //AsyncTask<Void, Integer, Void>???
-        //adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getClients());
 
         //show in every item on the viewList the row_item.xml
         adapter = new ArrayAdapter<Client>(this, R.layout.row_item, filterClients) {
@@ -102,7 +107,6 @@ public class ClientsList extends Activity implements View.OnClickListener {
                 return convertView;
             }
 
-            @NonNull
             @Override
             public Filter getFilter() {
                 return new Filter() {
@@ -110,7 +114,8 @@ public class ClientsList extends Activity implements View.OnClickListener {
                     protected FilterResults performFiltering(CharSequence constraint) {
 
                         FilterResults filterResults = new FilterResults();
-                        filterClients.clear();
+                        clear();
+                        //List<Client> temp = new ArrayList<>();
 
                         for (Client c : instance.getClients()) {
 
@@ -118,19 +123,15 @@ public class ClientsList extends Activity implements View.OnClickListener {
                                 filterClients.add(c);
                             }
                         }
+                        notifyDataSetChanged();
+                        //filterResults.values = filterClients;
+                        //filterResults.count = filterClients.size();
 
-                        filterResults.values = filterClients;
-                        filterResults.count = filterClients.size();
-
-                        return filterResults;
+                        return null;
                     }
 
                     @Override
                     protected void publishResults(CharSequence constraint, FilterResults results) {
-
-                        addAll((ArrayList) results.values);
-                        notifyDataSetChanged();
-                        //clear();
 
                     }
                 };
@@ -149,7 +150,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
-                adapter.notifyDataSetChanged();
+                //adapter.notifyDataSetChanged();
                 return false;
             }
         });
@@ -167,6 +168,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
 
                 //only for example
                 Toast.makeText(ClientsList.this, "need to move to different activity/fragments", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ClientsList.this,"UPDATE",Toast.LENGTH_SHORT).show();
 
                 //open the UpdateClient Activity
                 //don't working!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -180,7 +182,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
             }
         });
 
-        int a;
+
 
 
     }
@@ -205,6 +207,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
 
             //only for example
             Toast.makeText(ClientsList.this, "need to move to different activity/fragments", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ClientsList.this,"ADD",Toast.LENGTH_SHORT).show();
 
             //open the ClientProperty Activity
             Intent myIntent = new Intent(ClientsList.this, ClientProperty.class);
@@ -212,18 +215,20 @@ public class ClientsList extends Activity implements View.OnClickListener {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clients_list);
 
         init();
-        clientListView();
-
-
+        //clientListView();
         findViews();
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        clientListView();
+    }
 }
