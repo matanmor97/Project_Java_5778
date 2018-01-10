@@ -91,6 +91,8 @@ public class ClientProperty extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_client_property);
 
 
+
+
         DBManagerFactory.getInstanse().getClients();
 
         findViews();
