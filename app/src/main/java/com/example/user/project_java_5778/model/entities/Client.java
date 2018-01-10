@@ -10,20 +10,20 @@ public class Client {
     constructor??
      */
 
-    private String lastName;
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    public String getLastName () {
-        return lastName;
-    }
-
     private String firstName;
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
     public String getFirstName () {
         return firstName;
+    }
+
+    private String lastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getLastName () {
+        return lastName;
     }
 
     private long id;
