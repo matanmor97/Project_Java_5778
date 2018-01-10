@@ -17,7 +17,9 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +31,13 @@ import com.example.user.project_java_5778.model.datasource.List_DBManager;
 import com.example.user.project_java_5778.model.entities.Car;
 import com.example.user.project_java_5778.model.entities.Client;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 //need to add SEARCH option
 
-public class ClientsList extends Activity implements View.OnClickListener  {
+public class ClientsList extends Activity implements View.OnClickListener {
 
     private DB_manager instance = DBManagerFactory.getInstanse();
     private Button addButton;
@@ -47,8 +50,7 @@ public class ClientsList extends Activity implements View.OnClickListener  {
     /**
      * initialization
      */
-    private void init()
-    {
+    private void init() {
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         Client client1 = new Client();
@@ -78,40 +80,80 @@ public class ClientsList extends Activity implements View.OnClickListener  {
      */
     private void clientListView() {
 
-        clientList = (ListView)findViewById(R.id.list_view);
-
+        clientList = (ListView) findViewById(R.id.list_view);
+        final List<Client> filterClients = new ArrayList<>();
+        filterClients.addAll(instance.getClients());
         //show in every item on the viewList the Client ToString implementation
-        //AsyncTask<Void, Integer, Void>???
-        //adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getClients());
 
         //show in every item on the viewList the row_item.xml
-        adapter = new ArrayAdapter<Client>(this,R.layout.row_item,instance.getClients())
-        {
+        adapter = new ArrayAdapter<Client>(this, R.layout.row_item, filterClients) {
             @Override
-            public View getView(int position, View convertView, ViewGroup parent)
-            {
-                if (convertView == null)
-                {
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
                     convertView = View.inflate(ClientsList.this,
-                            R.layout.row_item,null);
+                            R.layout.row_item, null);
                 }
                 //Find the Views in the layout
                 TextView productIdTextView = (TextView) convertView
                         .findViewById(R.id.idTextView);
-                TextView productFirstNameTextView = (TextView) convertView
-                        .findViewById(R.id.firstNameTextView);
-                TextView productLastNameTextView = (TextView) convertView
+                TextView productNameTextView = (TextView) convertView
                         .findViewById(R.id.lastNameTextView);
                 ImageView productionImageView = (ImageView) convertView
                         .findViewById(R.id.image_view);
                 //put the data in the views
-                productIdTextView.setText("ID: " + Long.toString(instance.getClients().get(position).getId()));
-                productFirstNameTextView.setText("First Name: " + instance.getClients().get(position).getFirstName());
-                productLastNameTextView.setText("Last Name: " + instance.getClients().get(position).getLastName());
+                productIdTextView.setText(Long.toString(instance.getClients().get(position).getId()));
+                productNameTextView.setText(instance.getClients().get(position).getFirstName() + " , " + instance.getClients().get(position).getLastName());
 
                 return convertView;
             }
+
+            @Override
+            public Filter getFilter() {
+                return new Filter() {
+                    @Override
+                    protected FilterResults performFiltering(CharSequence constraint) {
+
+                        FilterResults filterResults = new FilterResults();
+                        clear();
+                        //List<Client> temp = new ArrayList<>();
+
+                        for (Client c : instance.getClients()) {
+
+                            if (c.getLastName().startsWith(constraint.toString())) {
+                                filterClients.add(c);
+                            }
+                        }
+                        //notifyDataSetChanged();
+                        //filterResults.values = filterClients;
+                        //filterResults.count = filterClients.size();
+
+                        return null;
+                    }
+
+                    @Override
+                    protected void publishResults(CharSequence constraint, FilterResults results) {
+
+                    }
+                };
+            }
         };
+
+        SearchView filterSearchView = (SearchView) findViewById(R.id.searchView);
+
+        filterSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                adapter.notifyDataSetChanged();
+                return false;
+            }
+        });
 
 
         clientList.setAdapter(adapter);
@@ -119,25 +161,21 @@ public class ClientsList extends Activity implements View.OnClickListener  {
         /**
          * when you click the item in the list view it calls to onItemClick
          */
-        clientList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        clientList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //only for example
-                Toast.makeText(ClientsList.this,"UPDATE",Toast.LENGTH_SHORT).show();
 
                 //open the UpdateClient Activity
                 Intent myIntent = new Intent(ClientsList.this, UpdateClient.class);
 
                 //put in the intent the id of the clicked client
 
-                myIntent.putExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY , instance.getClients().get(position).getId());
+                myIntent.putExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, instance.getClients().get(position).getId());
 
                 startActivity(myIntent);
             }
         });
-
 
 
 
@@ -149,7 +187,7 @@ public class ClientsList extends Activity implements View.OnClickListener  {
      * Find the Views in the layout
      */
     private void findViews() {
-        addButton = (Button)findViewById( R.id.add_button );
+        addButton = (Button) findViewById(R.id.add_button);
 
         addButton.setOnClickListener(this);
     }
@@ -160,9 +198,10 @@ public class ClientsList extends Activity implements View.OnClickListener  {
      */
     @Override
     public void onClick(View v) {
-        if ( v == addButton ) {
+        if (v == addButton) {
 
             //only for example
+            Toast.makeText(ClientsList.this, "need to move to different activity/fragments", Toast.LENGTH_SHORT).show();
             Toast.makeText(ClientsList.this,"ADD",Toast.LENGTH_SHORT).show();
 
             //open the ClientProperty Activity
@@ -180,6 +219,7 @@ public class ClientsList extends Activity implements View.OnClickListener  {
         //clientListView();
         findViews();
     }
+
 
     @Override
     protected void onStart() {
