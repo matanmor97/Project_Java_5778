@@ -97,7 +97,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
                 TextView productIdTextView = (TextView) convertView
                         .findViewById(R.id.idTextView);
                 TextView productNameTextView = (TextView) convertView
-                        .findViewById(R.id.nameTextView);
+                        .findViewById(R.id.lastNameTextView);
                 ImageView productionImageView = (ImageView) convertView
                         .findViewById(R.id.image_view);
                 //put the data in the views
