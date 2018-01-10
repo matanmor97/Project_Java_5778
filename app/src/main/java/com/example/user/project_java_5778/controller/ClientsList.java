@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//need to add SEARCH option
+// need to add SEARCH option
 
 public class ClientsList extends Activity implements View.OnClickListener {
 
