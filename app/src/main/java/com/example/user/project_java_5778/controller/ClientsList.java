@@ -166,12 +166,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //only for example
-                Toast.makeText(ClientsList.this, "need to move to different activity/fragments", Toast.LENGTH_SHORT).show();
-                Toast.makeText(ClientsList.this,"UPDATE",Toast.LENGTH_SHORT).show();
-
                 //open the UpdateClient Activity
-                //don't working!!!!!!!!!!!!!!!!!!!!!!!!!
                 Intent myIntent = new Intent(ClientsList.this, UpdateClient.class);
 
                 //put in the intent the id of the clicked client

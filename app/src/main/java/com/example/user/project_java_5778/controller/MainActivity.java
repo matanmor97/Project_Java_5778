@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button branches;
     private Button carModels;
     private Button cars;
-    public int a;
 
     /**
      * Find the Views in the layout
