@@ -61,6 +61,7 @@ public class List_DBManager implements DB_manager {
     @Override
     public long addClient(ContentValues contentValues) {
 
+        //change the ID by adding 1 when we add a Client
         contentValues.put(TakeGo_Const.ClientConst.id, ID++);
         Client client = TakeGo_Const.ContentValueToClient(contentValues);
         clients.add(client);
@@ -135,9 +136,14 @@ public class List_DBManager implements DB_manager {
 
         return carModel;
     }
+
+    static int Code = 235897210;
+
     @Override
     public String addCarModel(ContentValues contentValues) {
 
+        //change the model code by adding 1 when we add a Car model
+        contentValues.put(TakeGo_Const.CarModelConst.modelCode, Integer.toString(Code++));
         CarModel carmodel = TakeGo_Const.ContentValueToCarModel(contentValues);
         carModels.add(carmodel);
 

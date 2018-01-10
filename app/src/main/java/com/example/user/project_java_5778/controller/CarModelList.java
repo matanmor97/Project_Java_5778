@@ -1,6 +1,32 @@
 package com.example.user.project_java_5778.controller;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Filter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.user.project_java_5778.R;
+import com.example.user.project_java_5778.model.backend.DBManagerFactory;
+import com.example.user.project_java_5778.model.backend.DB_manager;
+import com.example.user.project_java_5778.model.backend.TakeGo_Const;
+import com.example.user.project_java_5778.model.entities.CarModel;
+import com.example.user.project_java_5778.model.entities.Client;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -35,14 +61,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// need to add SEARCH option
+public class CarModelList extends Activity implements View.OnClickListener {
 
-public class ClientsList extends Activity implements View.OnClickListener {
 
     private DB_manager instance = DBManagerFactory.getInstanse();
     private Button addButton;
-    private ListView clientList;
-    ArrayAdapter<Client> adapter;
+    private ListView CarModelList;
+    ArrayAdapter<CarModel> adapter;
 
 
 
@@ -53,48 +78,39 @@ public class ClientsList extends Activity implements View.OnClickListener {
     private void init() {
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        Client client1 = new Client();
-        client1.setFirstName("a");
-        client1.setLastName("a");
-        client1.setId(123);
-        client1.setEmailAddress("aa");
-        client1.setCreditCard("1232");
+        CarModel carModel1 = new CarModel();
+        carModel1.setModelCode("11111");
 
-        Client client2 = new Client();
-        client2.setFirstName("b");
-        client2.setLastName("b");
+        CarModel carModel2 = new CarModel();
 
-        Client client3 = new Client();
-        client3.setFirstName("b");
-        client3.setLastName("b");
+        CarModel carModel3 = new CarModel();
 
-        instance.addClient(TakeGo_Const.ClientToContentValues(client1));
-        instance.addClient(TakeGo_Const.ClientToContentValues(client2));
-        instance.addClient(TakeGo_Const.ClientToContentValues(client3));
+        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel1));
+        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel2));
+        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel3));
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     }
 
     /**
-     * make the ListView and fill it with the ArrayList of clients
+     * make the ListView and fill it with the ArrayList of CarModel
      */
-    private void clientListView() {
+    private void CarModelListView() {
 
-        clientList = (ListView) findViewById(R.id.list_view_client);
-        final List<Client> filterClients = new ArrayList<>();
-        filterClients.addAll(instance.getClients());
-        //show in every item on the viewList the Client ToString implementation
-        //adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getClients());
-
+        CarModelList = (ListView) findViewById(R.id.list_view_carModel);
+        final List<CarModel> filterCarModels = new ArrayList<>();
+        filterCarModels.addAll(instance.getCarModels());
+        //show in every item on the viewList the CarModel ToString implementation
+        //adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getCarModels());
 
         //show in every item on the viewList the row_item.xml
-        adapter = new ArrayAdapter<Client>(this, R.layout.row_item, filterClients) {
+        adapter = new ArrayAdapter<CarModel>(this, R.layout.row_item, filterCarModels) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent)
             {
                 if (convertView == null)
                 {
-                    convertView = View.inflate(ClientsList.this,
+                    convertView = View.inflate(CarModelList.this,
                             R.layout.row_item,null);
                 }
                 //Find the Views in the layout
@@ -107,9 +123,9 @@ public class ClientsList extends Activity implements View.OnClickListener {
                 ImageView productionImageView = (ImageView) convertView
                         .findViewById(R.id.image_view);
                 //put the data in the views
-                productIdTextView.setText("ID: " + Long.toString(instance.getClients().get(position).getId()));
-                productFirstNameTextView.setText("First Name: " + instance.getClients().get(position).getFirstName());
-                productLastNameTextView.setText("Last Name: " + instance.getClients().get(position).getLastName());
+                productIdTextView.setText("Model Code: " + instance.getCarModels().get(position).getModelCode());
+                productFirstNameTextView.setText("Model Name: " + instance.getCarModels().get(position).getModelName());
+                productLastNameTextView.setText("Company Name: " + instance.getCarModels().get(position).getCompanyName());
 
                 return convertView;
             }
@@ -124,15 +140,15 @@ public class ClientsList extends Activity implements View.OnClickListener {
                         clear();
                         //List<Client> temp = new ArrayList<>();
 
-                        for (Client c : instance.getClients()) {
+                        for (CarModel c : instance.getCarModels()) {
 
-                            if (c.getLastName().startsWith(constraint.toString())) {
-                                filterClients.add(c);
+                            if (c.getModelName().startsWith(constraint.toString())) {
+                                filterCarModels.add(c);
                             }
                         }
                         //notifyDataSetChanged();
-                        //filterResults.values = filterClients;
-                        //filterResults.count = filterClients.size();
+                        //filterResults.values = filterCarModels;
+                        //filterResults.count = filterCarModels.size();
 
                         return null;
                     }
@@ -145,7 +161,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
             }
         };
 
-        SearchView filterSearchView = (SearchView) findViewById(R.id.searchViewClient);
+        SearchView filterSearchView = (SearchView) findViewById(R.id.searchViewCarModel);
 
         filterSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -163,22 +179,22 @@ public class ClientsList extends Activity implements View.OnClickListener {
         });
 
 
-        clientList.setAdapter(adapter);
+        CarModelList.setAdapter(adapter);
 
         /**
          * when you click the item in the list view it calls to onItemClick
          */
-        clientList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        CarModelList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //open the UpdateClient Activity
-                Intent myIntent = new Intent(ClientsList.this, UpdateClient.class);
+                Intent myIntent = new Intent(CarModelList.this, UpdateClient.class);
 
                 //put in the intent the id of the clicked client
 
-                myIntent.putExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, instance.getClients().get(position).getId());
+                myIntent.putExtra(TakeGo_Const.ConstValue.CAR_MODEL_KEY, instance.getCarModels().get(position).getModelCode());
 
                 startActivity(myIntent);
             }
@@ -194,33 +210,33 @@ public class ClientsList extends Activity implements View.OnClickListener {
      * Find the Views in the layout
      */
     private void findViews() {
-        addButton = (Button) findViewById(R.id.add_button_client);
+        addButton = (Button) findViewById(R.id.add_button_carModel);
 
         addButton.setOnClickListener(this);
     }
 
     /**
      * Handle button click events
-     * DON'T WORKING!!!!!
      */
     @Override
     public void onClick(View v) {
         if (v == addButton) {
 
             //only for example
-            Toast.makeText(ClientsList.this, "need to move to different activity/fragments", Toast.LENGTH_SHORT).show();
-            Toast.makeText(ClientsList.this,"ADD",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CarModelList.this,"ADD",Toast.LENGTH_SHORT).show();
 
-            //open the ClientProperty Activity
-            Intent myIntent = new Intent(ClientsList.this, ClientProperty.class);
+            //open the ?? Activity
+            Intent myIntent = new Intent(CarModelList.this, ClientProperty.class);
             startActivity(myIntent);
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clients_list);
+        setContentView(R.layout.activity_car_model_list);
+
 
         init();
         findViews();
@@ -230,6 +246,6 @@ public class ClientsList extends Activity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
-        clientListView();
+        CarModelListView();
     }
 }

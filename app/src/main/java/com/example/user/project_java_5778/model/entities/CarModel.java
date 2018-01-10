@@ -2,9 +2,6 @@ package com.example.user.project_java_5778.model.entities;
 
 import java.util.Objects;
 
-/**
- * Created by user on 14/11/2017.
- */
 
 public class CarModel {
 

@@ -52,6 +52,7 @@ public class TakeGo_Const {
 
     public class ConstValue {
         public final static String CLIENT_ID_KEY = "com.example.user.project_java_5778.model.backend.TakeGo_const.CLIENT_ID";
+        public final static String CAR_MODEL_KEY = "com.example.user.project_java_5778.model.backend.TakeGo_const.CAR_MODEL_KEY";
     }
 
 

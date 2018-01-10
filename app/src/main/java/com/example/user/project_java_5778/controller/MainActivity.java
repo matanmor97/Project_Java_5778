@@ -39,14 +39,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if ( v == clients ) {
-
+            // Handle clicks for clients
             Intent myIntent = new Intent(MainActivity.this, ClientsList.class);
             startActivity(myIntent);
-            // Handle clicks for clients
+
         } else if ( v == branches ) {
             // Handle clicks for branches
         } else if ( v == carModels ) {
             // Handle clicks for carModels
+            Intent myIntent = new Intent(MainActivity.this, CarModelList.class);
+            startActivity(myIntent);
         } else if ( v == cars ) {
             // Handle clicks for cars
         }
