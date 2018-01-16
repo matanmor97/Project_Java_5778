@@ -116,7 +116,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
                         addAll((List)results.values);
 
 
-notifyDataSetChanged();
+                        notifyDataSetChanged();
                     }
                 };
             }

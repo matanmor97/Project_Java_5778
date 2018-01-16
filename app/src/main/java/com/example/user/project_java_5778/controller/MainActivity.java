@@ -2,6 +2,7 @@ package com.example.user.project_java_5778.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -66,36 +67,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void init() {
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        Client client1 = new Client();
+        final Client client1 = new Client();
         client1.setFirstName("a");
         client1.setLastName("a");
         client1.setId(123);
         client1.setEmailAddress("aa");
         client1.setCreditCard("1232");
 
-        Client client2 = new Client();
+        final Client client2 = new Client();
         client2.setFirstName("b");
         client2.setLastName("b");
 
-        Client client3 = new Client();
+        final Client client3 = new Client();
         client3.setFirstName("b");
         client3.setLastName("b");
 
-        instance.addClient(TakeGo_Const.ClientToContentValues(client1));
-        instance.addClient(TakeGo_Const.ClientToContentValues(client2));
-        instance.addClient(TakeGo_Const.ClientToContentValues(client3));
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                instance.addClient(TakeGo_Const.ClientToContentValues(client1));
+                instance.addClient(TakeGo_Const.ClientToContentValues(client2));
+                instance.addClient(TakeGo_Const.ClientToContentValues(client3));
+                return null;
+            }
+        }.execute();
+
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        CarModel carModel1 = new CarModel();
+        final CarModel carModel1 = new CarModel();
         carModel1.setModelCode("11111");
 
-        CarModel carModel2 = new CarModel();
+        final CarModel carModel2 = new CarModel();
 
-        CarModel carModel3 = new CarModel();
+        final CarModel carModel3 = new CarModel();
 
-        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel1));
-        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel2));
-        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel3));
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel1));
+                instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel2));
+                instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel3));
+                return null;
+            }
+        }.execute();
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     }

@@ -59,7 +59,7 @@ public class MySQL_DBManager implements DB_manager {
     public List<Client> getClients () {
         List<Client> result = new ArrayList<Client>();
         try {
-            String str = PHPTools.GET(WEB_URL + "/getClients.php");
+            String str = PHPTools.GET(WEB_URL + "/getClient.php");
             JSONArray array = new JSONObject(str).getJSONArray("client");
 
             for (int i = 0; i < array.length(); i++) {
