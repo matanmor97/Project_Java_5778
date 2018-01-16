@@ -2,6 +2,7 @@ package com.example.user.project_java_5778.model.backend;
 
 import com.example.user.project_java_5778.model.datasource.List_DBManager;
 import com.example.user.project_java_5778.model.datasource.MySQL_DBManager;
+import com.example.user.project_java_5778.model.datasource.PHPTools;
 
 /**
  * Created by user on 15/11/2017.
@@ -14,7 +15,7 @@ public class DBManagerFactory {
 
     public static DB_manager getInstanse (){
         if (instanse == null)
-            instanse = new List_DBManager();
+            instanse = new MySQL_DBManager();
 
         return instanse;
     }
