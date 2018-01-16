@@ -47,33 +47,6 @@ public class ClientsList extends Activity implements View.OnClickListener {
 
 
 
-    /**
-     * initialization
-     */
-    private void init() {
-        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        Client client1 = new Client();
-        client1.setFirstName("a");
-        client1.setLastName("a");
-        client1.setId(123);
-        client1.setEmailAddress("aa");
-        client1.setCreditCard("1232");
-
-        Client client2 = new Client();
-        client2.setFirstName("b");
-        client2.setLastName("b");
-
-        Client client3 = new Client();
-        client3.setFirstName("b");
-        client3.setLastName("b");
-
-        instance.addClient(TakeGo_Const.ClientToContentValues(client1));
-        instance.addClient(TakeGo_Const.ClientToContentValues(client2));
-        instance.addClient(TakeGo_Const.ClientToContentValues(client3));
-        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    }
 
     /**
      * make the ListView and fill it with the ArrayList of clients
@@ -107,9 +80,9 @@ public class ClientsList extends Activity implements View.OnClickListener {
                 ImageView productionImageView = (ImageView) convertView
                         .findViewById(R.id.image_view);
                 //put the data in the views
-                productIdTextView.setText("ID: " + Long.toString(instance.getClients().get(position).getId()));
-                productFirstNameTextView.setText("First Name: " + instance.getClients().get(position).getFirstName());
-                productLastNameTextView.setText("Last Name: " + instance.getClients().get(position).getLastName());
+                productIdTextView.setText("ID: " + Long.toString(filterClients.get(position).getId()));
+                productFirstNameTextView.setText("First Name: " + filterClients.get(position).getFirstName());
+                productLastNameTextView.setText("Last Name: " + filterClients.get(position).getLastName());
 
                 return convertView;
             }
@@ -121,25 +94,29 @@ public class ClientsList extends Activity implements View.OnClickListener {
                     protected FilterResults performFiltering(CharSequence constraint) {
 
                         FilterResults filterResults = new FilterResults();
-                        clear();
-                        //List<Client> temp = new ArrayList<>();
+                     //  clear();
+                        List<Client> temp = new ArrayList<>();
 
                         for (Client c : instance.getClients()) {
 
                             if (c.getLastName().startsWith(constraint.toString())) {
-                                filterClients.add(c);
+                                temp.add(c);
                             }
                         }
                         //notifyDataSetChanged();
-                        //filterResults.values = filterClients;
-                        //filterResults.count = filterClients.size();
+                        filterResults.values = temp;
+                        filterResults.count = temp.size();
 
-                        return null;
+                        return filterResults;
                     }
 
                     @Override
                     protected void publishResults(CharSequence constraint, FilterResults results) {
+                        clear();
+                        addAll((List)results.values);
 
+
+notifyDataSetChanged();
                     }
                 };
             }
@@ -157,7 +134,6 @@ public class ClientsList extends Activity implements View.OnClickListener {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
-                adapter.notifyDataSetChanged();
                 return false;
             }
         });
@@ -178,7 +154,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
 
                 //put in the intent the id of the clicked client
 
-                myIntent.putExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, instance.getClients().get(position).getId());
+                myIntent.putExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, filterClients.get(position).getId());
 
                 startActivity(myIntent);
             }
@@ -222,7 +198,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clients_list);
 
-        init();
+        //init();
         findViews();
     }
 

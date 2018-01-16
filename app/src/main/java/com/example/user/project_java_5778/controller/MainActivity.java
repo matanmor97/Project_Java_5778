@@ -9,10 +9,16 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.user.project_java_5778.R;
+import com.example.user.project_java_5778.model.backend.DBManagerFactory;
+import com.example.user.project_java_5778.model.backend.DB_manager;
+import com.example.user.project_java_5778.model.backend.TakeGo_Const;
+import com.example.user.project_java_5778.model.entities.CarModel;
+import com.example.user.project_java_5778.model.entities.Client;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
+    private DB_manager instance = DBManagerFactory.getInstanse();
     private Button clients;
     private Button branches;
     private Button carModels;
@@ -54,12 +60,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * initialization
+     */
+    private void init() {
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        Client client1 = new Client();
+        client1.setFirstName("a");
+        client1.setLastName("a");
+        client1.setId(123);
+        client1.setEmailAddress("aa");
+        client1.setCreditCard("1232");
+
+        Client client2 = new Client();
+        client2.setFirstName("b");
+        client2.setLastName("b");
+
+        Client client3 = new Client();
+        client3.setFirstName("b");
+        client3.setLastName("b");
+
+        instance.addClient(TakeGo_Const.ClientToContentValues(client1));
+        instance.addClient(TakeGo_Const.ClientToContentValues(client2));
+        instance.addClient(TakeGo_Const.ClientToContentValues(client3));
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        CarModel carModel1 = new CarModel();
+        carModel1.setModelCode("11111");
+
+        CarModel carModel2 = new CarModel();
+
+        CarModel carModel3 = new CarModel();
+
+        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel1));
+        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel2));
+        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel3));
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        init();
         findViews();
     }
 }

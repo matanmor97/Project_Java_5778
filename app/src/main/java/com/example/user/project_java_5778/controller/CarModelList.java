@@ -71,27 +71,6 @@ public class CarModelList extends Activity implements View.OnClickListener {
 
 
 
-
-    /**
-     * initialization
-     */
-    private void init() {
-        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        CarModel carModel1 = new CarModel();
-        carModel1.setModelCode("11111");
-
-        CarModel carModel2 = new CarModel();
-
-        CarModel carModel3 = new CarModel();
-
-        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel1));
-        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel2));
-        instance.addCarModel(TakeGo_Const.CarModelToContentValues(carModel3));
-        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    }
-
     /**
      * make the ListView and fill it with the ArrayList of CarModel
      */
@@ -237,8 +216,6 @@ public class CarModelList extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_model_list);
 
-
-        init();
         findViews();
     }
 
