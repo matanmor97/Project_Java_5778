@@ -2,6 +2,9 @@ package com.example.user.project_java_5778.model.datasource;
 
 import android.content.ContentValues;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,6 +12,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Iterator;
 
 /**
  * Created by user on 10/01/2018.
@@ -75,5 +79,16 @@ public class PHPTools {
         }
         else
             return "";
+    }
+
+    public static ContentValues JsonToContentValues(JSONObject jsonObject) throws JSONException {
+        ContentValues result = new ContentValues();
+        Iterator<?> keys = jsonObject.keys();
+        while (keys.hasNext()) {
+            String key = (String) keys.next();
+            Object value = jsonObject.get(key);
+            result.put(key, value.toString());
+        }
+        return result;
     }
 }

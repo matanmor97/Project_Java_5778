@@ -3,11 +3,17 @@ package com.example.user.project_java_5778.model.datasource;
 import android.content.ContentValues;
 
 import com.example.user.project_java_5778.model.backend.DB_manager;
+import com.example.user.project_java_5778.model.backend.TakeGo_Const;
 import com.example.user.project_java_5778.model.entities.Branch;
 import com.example.user.project_java_5778.model.entities.Car;
 import com.example.user.project_java_5778.model.entities.CarModel;
 import com.example.user.project_java_5778.model.entities.Client;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +22,7 @@ import java.util.List;
 
 public class MySQL_DBManager implements DB_manager {
 
+    private String WEB_URL = "http://matanmos.vlab.jct.ac.il/matan";
 
     @Override
     public boolean CheckClientExist(long id) {
@@ -29,7 +36,16 @@ public class MySQL_DBManager implements DB_manager {
 
     @Override
     public long addClient(ContentValues contentValues) {
-        return 0;
+
+        try {
+            String result = PHPTools.POST(WEB_URL + "/addClient.php", contentValues);
+            long id = Long.parseLong(result);
+            return id;
+        }
+
+        catch (IOException e) {
+            return -1;
+        }
     }
 
     @Override
@@ -37,15 +53,35 @@ public class MySQL_DBManager implements DB_manager {
         return false;
     }
 
+
+
+    @Override
+    public List<Client> getClients () {
+        List<Client> result = new ArrayList<Client>();
+        try {
+            String str = PHPTools.GET(WEB_URL + "/client_table.php");
+            JSONArray array = new JSONObject(str).getJSONArray("students");
+
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject jsonObject = array.getJSONObject(i);
+                ContentValues contentValues = PHPTools.JsonToContentValues(jsonObject);
+                Client client = TakeGo_Const.ContentValueToClient(contentValues);
+                result.add(client);
+            }
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     @Override
     public void updateClient(long id, ContentValues values) {
 
     }
 
-    @Override
-    public List<Client> getClients() {
-        return null;
-    }
 
     @Override
     public int addBranch(ContentValues contentValues) {
