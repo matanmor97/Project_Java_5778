@@ -22,24 +22,38 @@ import java.util.List;
 
 public class MySQL_DBManager implements DB_manager {
 
-    private String WEB_URL = "http://matanmos.vlab.jct.ac.il/matan";
+    private String WEB_URL = "http://matanmos.vlab.jct.ac.il/test/php";
 
     @Override
     public boolean CheckClientExist(long id) {
         return false;
     }
 
+    static long ID = 235897210;
+
+
     @Override
     public Client getClient(long id) {
+        List<Client> temp = getClients();
+        Client result ;
+        try {
+            result=temp.get((int)id);
+            return result;
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public long addClient(ContentValues contentValues) {
 
+        contentValues.put(TakeGo_Const.ClientConst.id, ID++);
         try {
             String result = PHPTools.POST(WEB_URL + "/addClient.php", contentValues);
-            long id = Long.parseLong(result);
+            Long id = contentValues.getAsLong(TakeGo_Const.ClientConst.id);
             return id;
         }
 
@@ -59,8 +73,9 @@ public class MySQL_DBManager implements DB_manager {
     public List<Client> getClients () {
         List<Client> result = new ArrayList<Client>();
         try {
-            String str = PHPTools.GET(WEB_URL + "/getClient.php");
-            JSONArray array = new JSONObject(str).getJSONArray("client");
+            String str = PHPTools.GET(WEB_URL + "/getClients.php");
+            JSONArray array = new JSONObject(str).getJSONArray("clients");//clients is the name of the jason array
+
 
             for (int i = 0; i < array.length(); i++) {
                 JSONObject jsonObject = array.getJSONObject(i);
@@ -68,6 +83,8 @@ public class MySQL_DBManager implements DB_manager {
                 Client client = TakeGo_Const.ContentValueToClient(contentValues);
                 result.add(client);
             }
+            return result;
+
         }
 
         catch (Exception e) {

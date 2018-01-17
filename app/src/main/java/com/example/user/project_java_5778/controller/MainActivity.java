@@ -70,15 +70,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final Client client1 = new Client();
         client1.setFirstName("a");
         client1.setLastName("a");
-        client1.setId(123);
+        client1.setId(1236);
         client1.setEmailAddress("aa");
         client1.setCreditCard("1232");
 
         final Client client2 = new Client();
+        client2.setId(124);
         client2.setFirstName("b");
         client2.setLastName("b");
+        client2.setEmailAddress("aa");
+        client2.setCreditCard("1232");
 
         final Client client3 = new Client();
+        client3.setId(125);
         client3.setFirstName("b");
         client3.setLastName("b");
 
@@ -112,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return null;
             }
         }.execute();
+
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     }
@@ -122,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-        init();
+        //init();
         findViews();
     }
 }

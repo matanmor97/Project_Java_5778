@@ -55,7 +55,16 @@ public class ClientsList extends Activity implements View.OnClickListener {
 
         clientList = (ListView) findViewById(R.id.list_view_client);
         final List<Client> filterClients = new ArrayList<>();
-        filterClients.addAll(instance.getClients());
+
+        //pull the list from the database
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                filterClients.addAll(instance.getClients());
+                return null;
+            }
+        }.execute();
+
         //show in every item on the viewList the Client ToString implementation
         //adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getClients());
 
@@ -94,7 +103,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
                     protected FilterResults performFiltering(CharSequence constraint) {
 
                         FilterResults filterResults = new FilterResults();
-                     //  clear();
+                        // clear();
                         List<Client> temp = new ArrayList<>();
 
                         for (Client c : instance.getClients()) {
@@ -200,6 +209,7 @@ public class ClientsList extends Activity implements View.OnClickListener {
 
         //init();
         findViews();
+
     }
 
 
