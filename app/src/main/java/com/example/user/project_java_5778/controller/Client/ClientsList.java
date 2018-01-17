@@ -1,23 +1,15 @@
-package com.example.user.project_java_5778.controller;
+package com.example.user.project_java_5778.controller.Client;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -27,8 +19,6 @@ import com.example.user.project_java_5778.R;
 import com.example.user.project_java_5778.model.backend.DBManagerFactory;
 import com.example.user.project_java_5778.model.backend.DB_manager;
 import com.example.user.project_java_5778.model.backend.TakeGo_Const;
-import com.example.user.project_java_5778.model.datasource.List_DBManager;
-import com.example.user.project_java_5778.model.entities.Car;
 import com.example.user.project_java_5778.model.entities.Client;
 
 import java.util.ArrayList;
@@ -184,8 +174,8 @@ public class ClientsList extends Activity implements View.OnClickListener {
         if (v == addButton) {
 
             //only for example
-            Toast.makeText(ClientsList.this, "need to move to different activity/fragments", Toast.LENGTH_SHORT).show();
-            Toast.makeText(ClientsList.this,"ADD",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(ClientsList.this, "need to move to different activity/fragments", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(ClientsList.this,"ADD",Toast.LENGTH_SHORT).show();
 
             //open the ClientProperty Activity
             Intent myIntent = new Intent(ClientsList.this, ClientProperty.class);

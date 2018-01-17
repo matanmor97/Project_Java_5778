@@ -1,15 +1,15 @@
 package com.example.user.project_java_5778.controller;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.user.project_java_5778.R;
+import com.example.user.project_java_5778.controller.CarModel.CarModelList;
+import com.example.user.project_java_5778.controller.Client.ClientsList;
 import com.example.user.project_java_5778.model.backend.DBManagerFactory;
 import com.example.user.project_java_5778.model.backend.DB_manager;
 import com.example.user.project_java_5778.model.backend.TakeGo_Const;
@@ -96,11 +96,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         final CarModel carModel1 = new CarModel();
-        carModel1.setModelCode("11111");
 
         final CarModel carModel2 = new CarModel();
 
         final CarModel carModel3 = new CarModel();
+        carModel1.setModelName("mazda");
 
         new AsyncTask<Void, Void, Void>() {
 

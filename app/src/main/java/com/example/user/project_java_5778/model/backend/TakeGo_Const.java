@@ -64,7 +64,7 @@ public class TakeGo_Const {
         //split the string where there is space
         String[] temp = string.split("\\s+");
 
-        carModel.setModelCode(temp[0]);
+        carModel.setModelCode(Integer.parseInt(temp[0]));
         carModel.setCompanyName(temp[1]);
         carModel.setModelName(temp[2]);
         carModel.setEngineCapacity(Integer.parseInt(temp[3]));
@@ -173,7 +173,7 @@ public class TakeGo_Const {
         CarModel carModel = new CarModel();
 
         try {
-            carModel.setModelCode(contentValues.getAsString(CarModelConst.modelCode));
+            carModel.setModelCode(contentValues.getAsInteger(CarModelConst.modelCode));
             carModel.setCompanyName(contentValues.getAsString(CarModelConst.companyName));
             carModel.setModelName(contentValues.getAsString(CarModelConst.modelName));
             carModel.setEngineCapacity(contentValues.getAsInteger(CarModelConst.engineCapacity));
