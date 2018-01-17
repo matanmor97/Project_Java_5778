@@ -96,8 +96,17 @@ public class ClientsList extends Activity implements View.OnClickListener {
                         FilterResults filterResults = new FilterResults();
                         // clear();
                         List<Client> temp = new ArrayList<>();
+                        final List<Client> C = new ArrayList<>();
 
-                        for (Client c : instance.getClients()) {
+                        new AsyncTask<Void, Void, Void>() {
+                            @Override
+                            protected Void doInBackground(Void... params) {
+                                C.addAll(instance.getClients());
+                                return null;
+                            }
+                        }.execute();
+
+                        for (Client c : C) {
 
                             if (c.getLastName().startsWith(constraint.toString())) {
                                 temp.add(c);

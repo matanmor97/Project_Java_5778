@@ -46,8 +46,31 @@ public class UpdateClient extends AppCompatActivity implements View.OnClickListe
 
         Intent intent = getIntent();
         clientId = intent.getLongExtra(TakeGo_Const.ConstValue.CLIENT_ID_KEY, -1);
+        final Client client = new Client();
 
-        Client client = instance.getClient(clientId);
+        new AsyncTask<Void, Void, Client>() {
+
+            @Override
+            protected Client doInBackground(Void... params) {
+                return instance.getClient(clientId);
+            }
+
+            @Override
+            protected void onPostExecute(Client idResult) {
+                if (idResult.getId() > 0) {
+
+                    client.setFirstName(idResult.getFirstName());
+                    client.setLastName(idResult.getLastName());
+                    client.setId(idResult.getId());
+                    client.setPhoneNumber(idResult.getPhoneNumber());
+                    client.setCreditCard(idResult.getCreditCard());
+                    client.setEmailAddress(idResult.getEmailAddress());
+                }
+                finish();
+            }
+
+
+        }.execute();
 
         lastName_editText.setText(client.getLastName());
         firstName_editText.setText(client.getFirstName());

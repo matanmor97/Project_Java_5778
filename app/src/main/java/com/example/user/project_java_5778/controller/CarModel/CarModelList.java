@@ -2,6 +2,7 @@ package com.example.user.project_java_5778.controller.CarModel;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +36,22 @@ public class CarModelList extends Activity implements View.OnClickListener {
     ArrayAdapter<CarModel> adapter;
 
     /**
-     * make the ListView and fill it with the ArrayList of CarModel
+     * make the ListView and fill it with the ArrayList of carModels
      */
-    private void CarModelListView() {
+    private void carModelListView() {
 
         CarModelList = (ListView) findViewById(R.id.list_view_carModel);
         final List<CarModel> filterCarModels = new ArrayList<>();
-        filterCarModels.addAll(instance.getCarModels());
+
+        //pull the list from the database
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                filterCarModels.addAll(instance.getCarModels());
+                return null;
+            }
+        }.execute();
+
         //show in every item on the viewList the CarModel ToString implementation
         //adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,instance.getCarModels());
 
@@ -81,8 +91,18 @@ public class CarModelList extends Activity implements View.OnClickListener {
                         FilterResults filterResults = new FilterResults();
                         //clear();
                         List<CarModel> temp = new ArrayList<>();
+                        final List<CarModel> CM = new ArrayList<>();
 
-                        for (CarModel c : instance.getCarModels()) {
+                        new AsyncTask<Void, Void, Void>() {
+                            @Override
+                            protected Void doInBackground(Void... params) {
+                                CM.addAll(instance.getCarModels());
+                                return null;
+                            }
+                        }.execute();
+
+
+                        for (CarModel c : CM) {
 
                             if (Integer.toString(c.getModelCode()).startsWith(constraint.toString())) {
                                 temp.add(c);
@@ -183,6 +203,6 @@ public class CarModelList extends Activity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
-        CarModelListView();
+        carModelListView();
     }
 }

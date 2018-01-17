@@ -46,9 +46,32 @@ public class UpdateCarModel extends AppCompatActivity implements View.OnClickLis
 
         Intent intent = getIntent();
         carModelCode = intent.getIntExtra(TakeGo_Const.ConstValue.CAR_MODEL_KEY, -1);
+        final CarModel carModel = new CarModel();
 
-        CarModel carModel = instance.getCarModel(carModelCode);
+        new AsyncTask<Void, Void, CarModel>() {
 
+            @Override
+            protected CarModel doInBackground(Void... params) {
+
+                return instance.getCarModel(carModelCode);
+            }
+
+            @Override
+            protected void onPostExecute(CarModel idResult) {
+                if (idResult.getModelCode() > 0) {
+
+                    carModel.setModelCode(idResult.getModelCode());
+                    carModel.setCompanyName(idResult.getCompanyName());
+                    carModel.setModelName(idResult.getCompanyName());
+                    carModel.setEngineCapacity(idResult.getEngineCapacity());
+                    carModel.setGearbox(idResult.getGearbox());
+                    carModel.setSeats(idResult.getModelCode());
+                }
+                finish();
+            }
+
+
+        }.execute();
 
         companyName_editText.setText(carModel.getCompanyName());
         modelName_editText.setText(carModel.getModelName());
