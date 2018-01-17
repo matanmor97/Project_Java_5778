@@ -3,93 +3,93 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.user.project_java_5778.controller.Client.ClientProperty">
+    tools:context="com.example.user.project_java_5778.controller.CarModel.UpdateCarModel">
 
 
     <EditText
-        android:id="@+id/fristName_editText_add"
+        android:id="@+id/companyName_editText_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="77dp"
+        android:layout_toEndOf="@+id/carModels"
+        android:layout_toRightOf="@+id/carModels"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/firstName_ClientProperty"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/clients"
-        android:layout_toEndOf="@+id/clients" />
+        android:hint="@string/companyName_CarModelProperty"
+        android:inputType="textPersonName" />
 
 
     <EditText
-        android:id="@+id/lastName_editText_add"
+        android:id="@+id/modelName_editText_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/carModels"
+        android:layout_toRightOf="@+id/carModels"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/lastName_ClientProperty"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/clients"
-        android:layout_toEndOf="@+id/clients" />
-
-
+        android:hint="@string/modelName_CarModelProperty"
+        android:inputType="textPersonName" />
 
 
     <EditText
-        android:id="@+id/phoneNumber_editText_add"
+        android:id="@+id/engineCapacity_editText_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/carModels"
+        android:layout_toRightOf="@+id/carModels"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/phoneNumber_ClientProperty"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/clients"
-        android:layout_toEndOf="@+id/clients" />
+        android:hint="@string/engineCapacity_CarModelProperty"
+        android:inputType="textPersonName" />
+
 
     <EditText
-        android:id="@+id/emailAddress_editText_add"
+        android:id="@+id/gearbox_editText_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/carModels"
+        android:layout_toRightOf="@+id/carModels"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/emailAddress_ClientProperty"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/clients"
-        android:layout_toEndOf="@+id/clients" />
+        android:hint="@string/gearbox_CarModelProperty"
+        android:inputType="textPersonName" />
+
 
     <EditText
-        android:id="@+id/creditCard_editText_add"
+        android:id="@+id/seats_editText_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/carModels"
+        android:layout_toRightOf="@+id/carModels"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/creditCard_ClientProperty"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/clients"
-        android:layout_toEndOf="@+id/clients" />
+        android:hint="@string/seats_CarModelProperty"
+        android:inputType="textPersonName" />
 
 
     <Button
-        android:id="@+id/addButton_add"
+        android:id="@+id/addButton_carModel_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:text="@string/addButton"/>
+        android:text="@string/updateButton" />
 
 
 </LinearLayout>

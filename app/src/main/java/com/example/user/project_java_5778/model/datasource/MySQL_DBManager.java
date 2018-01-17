@@ -121,20 +121,24 @@ public class MySQL_DBManager implements DB_manager {
     }
 
     @Override
-    public String addCarModel(ContentValues contentValues) {
-        return null;
+    public int addCarModel(ContentValues contentValues) {
+        return 0;
     }
 
     @Override
-    public boolean removeCarModel(String id) {
+    public boolean removeCarModel(int modelCode) {
         return false;
     }
 
     @Override
-    public void updateCarModel(String id, ContentValues values) {
+    public void updateCarModel(int modelCode, ContentValues values) {
 
     }
 
+    @Override
+    public CarModel getCarModel(int modleCode) {
+        return null;
+    }
     @Override
     public List<CarModel> getCarModels() {
         return null;

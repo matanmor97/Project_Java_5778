@@ -48,16 +48,17 @@ public class List_DBManager implements DB_manager {
     static long ID = 235897210;
 
     @Override
-    public Client getClient(long id){
+    public Client getClient(long id) {
         Client client = null;
 
-        for (Client c:clients) {
+        for (Client c : clients) {
             if (c.getId() == id)
                 client = c;
         }
 
         return client;
     }
+
     @Override
     public long addClient(ContentValues contentValues) {
 
@@ -68,12 +69,14 @@ public class List_DBManager implements DB_manager {
 
         return client.getId();
     }
+
     @Override
     public boolean removeClient(long id) {
 
         Client client = getClient(id);
         return clients.remove(client);
     }
+
     @Override
     public void updateClient(long id, ContentValues values) {
 
@@ -87,19 +90,18 @@ public class List_DBManager implements DB_manager {
     }
 
 
-
-
-    public Branch GetBranch (int branchNumber){
+    public Branch GetBranch(int branchNumber) {
 
         Branch branch = null;
 
-        for (Branch b:branches) {
+        for (Branch b : branches) {
             if (b.getBranchNumber() == branchNumber)
                 branch = b;
         }
 
         return branch;
     }
+
     @Override
     public int addBranch(ContentValues contentValues) {
 
@@ -108,29 +110,32 @@ public class List_DBManager implements DB_manager {
 
         return branch.getBranchNumber();
     }
+
     @Override
     public boolean removeBranch(int branchNumber) {
 
         Branch branch = GetBranch(branchNumber);
         return branches.remove(branch);
     }
+
     @Override
     public void updateBranch(int branchNumber, ContentValues values) {
 
         Branch branch = TakeGo_Const.ContentValueToBranch(values);
         branches.set(branches.indexOf(GetBranch(branchNumber)), branch);
     }
+
     @Override
     public List<Branch> getBranches() {
         return branches;
     }
 
-
-    public CarModel GetCarModel(String modelName){
+    @Override
+    public CarModel getCarModel(int modelCode) {
         CarModel carModel = null;
 
-        for (CarModel c:carModels) {
-            if (c.getModelName() == modelName)
+        for (CarModel c : carModels) {
+            if (c.getModelCode() == modelCode)
                 carModel = c;
         }
 
@@ -140,7 +145,7 @@ public class List_DBManager implements DB_manager {
     static int Code = 235897210;
 
     @Override
-    public String addCarModel(ContentValues contentValues) {
+    public int addCarModel(ContentValues contentValues) {
 
         //change the model code by adding 1 when we add a Car model
         contentValues.put(TakeGo_Const.CarModelConst.modelCode, Integer.toString(Code++));
@@ -149,18 +154,21 @@ public class List_DBManager implements DB_manager {
 
         return carmodel.getModelCode();
     }
+
     @Override
-    public boolean removeCarModel(String modelName) {
-        CarModel carModel = GetCarModel(modelName);
-        return carModels.remove(modelName);
+    public boolean removeCarModel(int modleCode) {
+        CarModel carModel = getCarModel(modleCode);
+        return carModels.remove(carModel);
     }
+
     @Override
-    public void updateCarModel(String modelName, ContentValues values) {
+    public void updateCarModel(int modleCode, ContentValues values) {
 
         CarModel carModel = TakeGo_Const.ContentValueToCarModel(values);
-        carModels.set(carModels.indexOf(GetCarModel(modelName)),carModel);
+        carModels.set(carModels.indexOf(getCarModel(modleCode)), carModel);
 
     }
+
     @Override
     public List<CarModel> getCarModels() {
 
@@ -168,18 +176,18 @@ public class List_DBManager implements DB_manager {
     }
 
 
-
-    public Car GetCar(int carNumber){
+    public Car GetCar(int carNumber) {
 
         Car car = null;
 
-        for (Car c:cars) {
+        for (Car c : cars) {
             if (c.getCarNumber() == carNumber)
                 car = c;
         }
 
         return car;
     }
+
     @Override
     public int addCar(ContentValues contentValues) {
 
@@ -188,18 +196,21 @@ public class List_DBManager implements DB_manager {
 
         return car.getCarNumber();
     }
+
     @Override
     public boolean removeCar(int carNumber) {
 
         Car car = GetCar(carNumber);
         return cars.remove(car);
     }
+
     @Override
     public void updateCar(int carNumber, ContentValues values) {
 
         Car car = TakeGo_Const.ContentValueToCar(values);
-        cars.set(cars.indexOf(GetCar(carNumber)),car);
+        cars.set(cars.indexOf(GetCar(carNumber)), car);
     }
+
     @Override
     public List<Car> getCars() {
         return cars;

@@ -1,4 +1,4 @@
-package com.example.user.project_java_5778.controller;
+package com.example.user.project_java_5778.controller.CarModel;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,46 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.project_java_5778.R;
+import com.example.user.project_java_5778.controller.Client.ClientProperty;
 import com.example.user.project_java_5778.model.backend.DBManagerFactory;
 import com.example.user.project_java_5778.model.backend.DB_manager;
 import com.example.user.project_java_5778.model.backend.TakeGo_Const;
 import com.example.user.project_java_5778.model.entities.CarModel;
-import com.example.user.project_java_5778.model.entities.Client;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.user.project_java_5778.R;
-import com.example.user.project_java_5778.model.backend.DBManagerFactory;
-import com.example.user.project_java_5778.model.backend.DB_manager;
-import com.example.user.project_java_5778.model.backend.TakeGo_Const;
-import com.example.user.project_java_5778.model.datasource.List_DBManager;
-import com.example.user.project_java_5778.model.entities.Car;
-import com.example.user.project_java_5778.model.entities.Client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,8 +33,6 @@ public class CarModelList extends Activity implements View.OnClickListener {
     private Button addButton;
     private ListView CarModelList;
     ArrayAdapter<CarModel> adapter;
-
-
 
     /**
      * make the ListView and fill it with the ArrayList of CarModel
@@ -102,9 +65,9 @@ public class CarModelList extends Activity implements View.OnClickListener {
                 ImageView productionImageView = (ImageView) convertView
                         .findViewById(R.id.image_view);
                 //put the data in the views
-                productIdTextView.setText("Model Code: " + instance.getCarModels().get(position).getModelCode());
-                productFirstNameTextView.setText("Model Name: " + instance.getCarModels().get(position).getModelName());
-                productLastNameTextView.setText("Company Name: " + instance.getCarModels().get(position).getCompanyName());
+                productIdTextView.setText("Model Code: " + filterCarModels.get(position).getModelCode());
+                productFirstNameTextView.setText("Model Name: " + filterCarModels.get(position).getModelName());
+                productLastNameTextView.setText("Company Name: " + filterCarModels.get(position).getCompanyName());
 
                 return convertView;
             }
@@ -116,25 +79,27 @@ public class CarModelList extends Activity implements View.OnClickListener {
                     protected FilterResults performFiltering(CharSequence constraint) {
 
                         FilterResults filterResults = new FilterResults();
-                        clear();
-                        //List<Client> temp = new ArrayList<>();
+                        //clear();
+                        List<CarModel> temp = new ArrayList<>();
 
                         for (CarModel c : instance.getCarModels()) {
 
-                            if (c.getModelName().startsWith(constraint.toString())) {
-                                filterCarModels.add(c);
+                            if (Integer.toString(c.getModelCode()).startsWith(constraint.toString())) {
+                                temp.add(c);
                             }
                         }
                         //notifyDataSetChanged();
-                        //filterResults.values = filterCarModels;
-                        //filterResults.count = filterCarModels.size();
+                        filterResults.values = temp;
+                        filterResults.count = temp.size();
 
-                        return null;
+                        return filterResults;
                     }
 
                     @Override
                     protected void publishResults(CharSequence constraint, FilterResults results) {
 
+                        clear();
+                        addAll((List)results.values);
                     }
                 };
             }
@@ -168,20 +133,15 @@ public class CarModelList extends Activity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //open the UpdateClient Activity
-                Intent myIntent = new Intent(CarModelList.this, UpdateClient.class);
+                //open the UpdateCarModel Activity
+                Intent myIntent = new Intent(CarModelList.this, UpdateCarModel.class);
 
-                //put in the intent the id of the clicked client
+                //put in the intent the id of the clicked carModel
 
-                myIntent.putExtra(TakeGo_Const.ConstValue.CAR_MODEL_KEY, instance.getCarModels().get(position).getModelCode());
-
+                myIntent.putExtra(TakeGo_Const.ConstValue.CAR_MODEL_KEY, filterCarModels.get(position).getModelCode());
                 startActivity(myIntent);
             }
         });
-
-
-
-
     }
 
 
@@ -202,10 +162,10 @@ public class CarModelList extends Activity implements View.OnClickListener {
         if (v == addButton) {
 
             //only for example
-            Toast.makeText(CarModelList.this,"ADD",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(CarModelList.this,"ADD",Toast.LENGTH_SHORT).show();
 
-            //open the ?? Activity
-            Intent myIntent = new Intent(CarModelList.this, ClientProperty.class);
+            //open the AddCarModel Activity
+            Intent myIntent = new Intent(CarModelList.this, AddCarModel.class);
             startActivity(myIntent);
         }
     }

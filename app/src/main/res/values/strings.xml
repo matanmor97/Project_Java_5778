@@ -14,10 +14,20 @@
     <string name="creditCard_ClientProperty">Credit Card</string>
 
 
-    // Strings for clientProperty
+    // Strings for CarModel:
+    <string name="modelCode_CarModelProperty">modelCode</string>
+    <string name="companyName_CarModelProperty">companyName</string>
+    <string name="modelName_CarModelProperty">modelName</string>
+    <string name="engineCapacity_CarModelProperty">engineCapacity</string>
+    <string name="gearbox_CarModelProperty">gearbox</string>
+    <string name="seats_CarModelProperty">seats</string>
+
+
+    // Strings for add Files
     <string name="addButton">add</string>
 
-    // Strings for updateClient
+    // Strings for update files:
     <string name="updateButton">update</string>
+
 
 </resources>

@@ -25,9 +25,10 @@ public interface DB_manager {
     void updateBranch(int id, ContentValues values);
     List<Branch> getBranches();
 
-    String addCarModel (ContentValues contentValues);
-    boolean removeCarModel (String id);
-    void updateCarModel(String id, ContentValues values);
+    CarModel getCarModel(int modleCode);
+    int addCarModel (ContentValues contentValues);
+    boolean removeCarModel (int modleCode);
+    void updateCarModel(int modleCode, ContentValues values);
     List<CarModel> getCarModels();
 
     int addCar (ContentValues contentValues);

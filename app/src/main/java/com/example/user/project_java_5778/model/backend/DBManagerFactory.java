@@ -12,11 +12,9 @@ public class DBManagerFactory {
     private static DB_manager instanse = null;
     private DBManagerFactory (){}
 
-
     public static DB_manager getInstanse (){
         if (instanse == null)
-            instanse = new MySQL_DBManager();
-            //instanse = new List_DBManager();
+            instanse = new List_DBManager();
 
         return instanse;
     }
