@@ -22,6 +22,12 @@
     <string name="gearbox_CarModelProperty">gearbox</string>
     <string name="seats_CarModelProperty">seats</string>
 
+    // Strings for Car:
+    <string name="branchNumber_CarProperty">branchNumber</string>
+    <string name="carModelCode_CarProperty">carModelCode</string>
+    <string name="kilometers_CarProperty">kilometers</string>
+    <string name="carNumber_CarProperty">carNumber</string>
+
 
     // Strings for add Files
     <string name="addButton">add</string>

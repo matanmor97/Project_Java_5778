@@ -14,8 +14,8 @@ public class DBManagerFactory {
 
     public static DB_manager getInstanse (){
         if (instanse == null)
-            //instanse = new List_DBManager();
-            instanse = new MySQL_DBManager();
+            instanse = new List_DBManager();
+            //instanse = new MySQL_DBManager();
 
         return instanse;
     }

@@ -45,7 +45,7 @@ public class TakeGo_Const {
     public static class CarConst {
 
         public static final String branchNumber = "branchNumber";
-        public static final String carModel = "carModel";
+        public static final String carModelCode = "carModelCode";
         public static final String kilometers = "kilometers";
         public static final String carNumber = "carNumber";
     }
@@ -194,7 +194,7 @@ public class TakeGo_Const {
 
         try {
             contentValues.put(CarConst.branchNumber, car.getBranchNumber());
-            contentValues.put(CarConst.carModel, car.getCarModel());
+            contentValues.put(CarConst.carModelCode, car.getCarModel());
             contentValues.put(CarConst.kilometers, car.getKilometers());
             contentValues.put(CarConst.carNumber, car.getCarNumber());
         }
@@ -214,7 +214,7 @@ public class TakeGo_Const {
             car.setBranchNumber(contentValues.getAsInteger(CarConst.branchNumber));
             car.setKilometers(contentValues.getAsInteger(CarConst.kilometers));
             car.setCarNumber(contentValues.getAsInteger(CarConst.carNumber));
-            car.setCarModel(contentValues.getAsString(CarConst.carModel));
+            car.setCarModel(contentValues.getAsString(CarConst.carModelCode));
         }
 
         catch (Exception e) {

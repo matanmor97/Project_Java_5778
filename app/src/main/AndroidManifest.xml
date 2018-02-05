@@ -23,7 +23,9 @@
         <activity android:name=".controller.Client.UpdateClient" />
         <activity android:name=".controller.CarModel.CarModelList" />
         <activity android:name=".controller.CarModel.AddCarModel" />
-        <activity android:name=".controller.CarModel.UpdateCarModel"></activity>
+        <activity android:name=".controller.CarModel.UpdateCarModel" />
+        <activity android:name=".controller.Car.AddCar" />
+        <activity android:name=".controller.Car.CarList"/>
     </application>
 
 </manifest>

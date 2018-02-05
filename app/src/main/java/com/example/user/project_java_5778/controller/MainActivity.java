@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.user.project_java_5778.R;
+import com.example.user.project_java_5778.controller.Car.CarList;
 import com.example.user.project_java_5778.controller.CarModel.CarModelList;
 import com.example.user.project_java_5778.controller.Client.ClientsList;
 import com.example.user.project_java_5778.model.backend.DBManagerFactory;
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(myIntent);
         } else if ( v == cars ) {
             // Handle clicks for cars
+            Intent myIntent = new Intent(MainActivity.this, CarList.class);
+            startActivity(myIntent);
         }
     }
 
